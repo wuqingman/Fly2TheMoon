@@ -65,13 +65,14 @@ alias tmuxrc='vim ~/.tmux.conf'
 alias vimrc='vim -O ~/.vim/scripts/plugin.vim ~/.vim/scripts/setting.vim'
 
 # 快速远程登录
-alias -g TX='-t "/opt/tmux/bin/tmux new-session -s `whoami` || /opt/tmux/bin/tmux attach-session -t `whoami`"'
-alias fssh_yihe_me='ssh hoh0@192.168.2.106 TX'
+alias -g TX_OPT='-t "/opt/tmux/bin/tmux new-session -s `whoami` || /opt/tmux/bin/tmux attach-session -t `whoami`"'
+alias -g TX='-t "tmux new-session -s `whoami` || tmux attach-session -t `whoami`"'
+alias fssh_yihe_me='ssh hoh0@192.168.2.106 TX_OPT'
 alias fssh_yihe_lth='ssh lth@192.168.2.20'
-alias fssh_yihe_105='ssh root@192.168.2.105 TX'
-alias fssh_vb_base='ssh root@192.168.2.147 TX'
-alias fssh_vb_nav_biz='ssh root@192.168.2.148 TX'
-alias fssh_online_146='ssh root@202.107.247.146 -p 28489 TX'
+alias fssh_yihe_105='ssh root@192.168.2.105 TX_OPT'
+alias fssh_vb_master='ssh root@192.168.2.152 TX'
+alias fssh_vb_develop='ssh root@192.168.2.154 TX'
+alias fssh_online_146='ssh root@202.107.247.146 -p 28489 TX_OPT'
 
 # 快速进入tmux
 alias mars='tmux new-session -s `whoami` || tmux attach-session -t `whoami`'
