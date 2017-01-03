@@ -1,0 +1,17 @@
+[core]
+    editor = vim
+    quotepath = false
+[user]
+    name = Qian Lei
+    email = qianlei90@gmail.com
+[push]
+    default = simple
+[credential]
+    helper = cache --timeout=3600000
+[color]
+    status = auto
+    diff = auto
+    branch = auto
+    interactive = auto
+[merge]
+	ff = only

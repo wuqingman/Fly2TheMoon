@@ -1,0 +1,131 @@
+export F2TM_project_name="Fly2TheMoon"
+export F2TM_project_path="$HOME/${F2TM_project_name}"
+
+# --------------------
+# | 1. oh-my-zsh的配置
+# --------------------
+stty -ixon
+ZSH_THEME="afowler"
+CASE_SENSITIVE="true"
+DISABLE_AUTO_UPDATE="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+plugins=(
+    # 通用
+    common-aliases z sudo vundle colored-man-pages
+    # 特定OS
+    osx brew
+    # 开发工具
+    gitfast git-extras
+    docker docker-compose
+    python pyenv
+    httpie
+)
+
+export ZSH=$F2TM_project_path/zsh/oh-my-zsh
+export UPDATE_ZSH_DAYS=30
+source $ZSH/oh-my-zsh.sh
+
+# 快速使用历史命令
+source $F2TM_project_path/zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+# 命令行的语法高亮，必须是最后一个插件
+source $F2TM_project_path/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+
+# -------------
+# | 2. 所有平台
+# -------------
+# 设置路径
+if [ -d /opt/tmux ]; then
+    export PATH="$PATH:/opt/tmux/bin"
+fi
+if [ -d /opt/shadowsocks-libev ]; then
+    export PATH="$PATH:/opt/shadowsocks-libev/bin/"
+fi
+if [ -d /$HOME/.pyenv ]; then
+    export PATH="$PATH:$HOME/.pyenv/bin"
+fi
+if [ -d /usr/local/man ]; then
+    export MANPATH="/usr/local/man:$MANPATH"
+fi
+
+# 默认编辑器
+if which vim > /dev/null 2>&1; then
+    export EDITOR=vim
+fi
+
+# 语言
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# 快速编辑配置文件
+alias zshrc='vim ~/.zshrc'
+alias tmuxrc='vim ~/.tmux.conf'
+alias vimrc='vim -O ~/.vim/scripts/plugin.vim ~/.vim/scripts/setting.vim'
+
+# 快速远程登录
+alias -g TX='-t "/opt/tmux/bin/tmux new-session -s `whoami` || /opt/tmux/bin/tmux attach-session -t `whoami`"'
+alias fssh_yihe_me='ssh hoh0@192.168.2.106 TX'
+alias fssh_yihe_lth='ssh lth@192.168.2.20'
+alias fssh_yihe_105='ssh root@192.168.2.105 TX'
+alias fssh_vb_base='ssh root@192.168.2.147 TX'
+alias fssh_vb_nav_biz='ssh root@192.168.2.148 TX'
+alias fssh_online_146='ssh root@202.107.247.146 -p 28489 TX'
+
+# 快速进入tmux
+alias mars='tmux new-session -s `whoami` || tmux attach-session -t `whoami`'
+
+# privoxy代理
+if ps aux | grep -v grep | grep privoxy > /dev/null 2>&1; then
+    proxy_addr='http://127.0.0.1:8118'
+else
+    proxy_addr='http://192.168.2.106:8118'
+fi
+alias h="http_proxy=${proxy_addr} https_proxy=${proxy_addr} HTTP_PROXY=${proxy_addr} HTTPS_PROXY=${proxy_addr}"
+
+# docker
+if which docker > /dev/null 2>&1; then
+    alias dps='docker ps'
+    alias dim='docker images'
+    alias drm='docker rm'
+    alias drmi='docker rmi'
+fi
+
+# VirtualBox
+if which vboxmanage > /dev/null 2>&1; then
+    alias vb='vboxmanage'
+fi
+
+# gr, zsh plugin git中的别名gr='git remove'，所以git-run重新别名
+if which ggr > /dev/null 2>&1; then
+    alias ggr='/usr/local/bin/gr'
+    . <(ggr completion)
+fi
+
+
+
+# ----------
+# | 3. MacOS
+# ----------
+if [ `uname -s` = 'Darwin' ];
+then
+    # coreutils配置
+    if [ -d /usr/local/opt/coreutils ]; then
+        export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+        export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+        alias ls='ls -F -l -h --color=auto --ignore="*\.pyc" --ignore="*\.pyo"'
+        alias ll='ls -F -l -h --color=auto --ignore="*\.pyc" --ignore="*\.pyo"'
+    fi
+fi
+
+
+
+# ----------
+# | 4. Linux
+# ----------
+if [ `uname -s` = 'Linux' ];
+then
+    alias ls='ls -l -h --color=auto --ignore="*\.pyc" --ignore="*\.pyo"'
+    alias ll='ls -l -h --ignore="*\.pyc" --ignore="*\.pyo"'
+fi

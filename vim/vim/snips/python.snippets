@@ -1,0 +1,110 @@
+# 文件头
+snippet code "coding:utf-8"
+#!/usr/bin/env python2.7
+# -*- coding: utf-8 -*-
+#
+# Copyright (c) 2016 - 2035 HangZhou Yihe Information Technologies CO., Ltd.
+# 杭州一禾信息科技有限公司(http://yihe.io)
+#
+# All rights reserved.
+#
+# --------------------------------
+# | Author:   钱磊(Qian Lei)
+# | Email:    qian.lei@yihe.io | qianlei90@gmail.com
+# | Date:     `!v strftime("%Y-%m-%d %H:%M:%S")`
+# | Version:  1.0
+# --------------------------------
+#
+
+${2}
+endsnippet
+
+
+# 导入
+snippet im "import"
+import ${1:module}
+${2}
+endsnippet
+
+snippet fr "from . import ."
+from ${1} import ${2}
+endsnippet
+
+snippet ifd "if __debug__"
+if __debug__:
+	print '[DEBUG] ${1}: ', ${2}
+endsnippet
+
+
+# 关键字
+snippet t "True"
+True${1}
+endsnippet
+
+snippet f "False"
+False${1}
+endsnippet
+
+snippet n "None"
+None${1}
+endsnippet
+
+snippet r "return"
+return ${1}
+endsnippet
+
+snippet s "self."
+self.${1}
+endsnippet
+
+snippet p "print"
+print ${1}
+endsnippet
+
+snippet a "assert"
+assert ${1}
+endsnippet
+
+snippet isi "isinstance"
+isinstance(${1}, ${2})
+endsnippet
+
+
+# 文档
+snippet adoc "api param"
+'${1}': {'type': '${2:integer}', 'description': '${3}', 'in': '${4:formData}', 'required': ${5:False}},
+endsnippet
+
+
+# 模型字段
+snippet ColumnInt "column integer"
+${1} = Column(db.Integer, nullable=False, index=${2}, default=0, doc=u'${3}')
+endsnippet
+
+snippet ColumnFloat "column float"
+${1} = Column(db.Float, nullable=False, index=False, default=0, doc=u'${2}')
+endsnippet
+
+snippet ColumnString "column string"
+${1} = Column(db.String(${2}), nullable=False, index=False, default='', doc=u'${3}')
+endsnippet
+
+snippet ColumnText "column text"
+${1} = Column(db.Text, nullable=False, index=False, default='', doc=u'${2}')
+endsnippet
+
+snippet ColumnBoolean "column boolean"
+${1} = Column(db.Boolean, nullable=False, index=False, default=False, doc=u'${2}')
+endsnippet
+
+snippet ColumnArray "column array"
+${1} = Column(ARRAY(db.{$2}), nullable=False, index=False, default=set(), doc=u'${3}')
+endsnippet
+
+snippet ColumnChoice "column choice"
+${1} = Column(ChoiceType(${2}, types.Integer()), nullable=False, index=True, default=${3}, doc=u'${4}')
+endsnippet
+
+snippet ColumnDateTime "column datetime"
+${1} = Column(db.DateTime, nullable=False, index=False, default=datetime.utcnow, doc=u'${2}')
+endsnippet
