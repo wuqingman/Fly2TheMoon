@@ -1,6 +1,2 @@
-source ~/.vim/scripts/common.vim
-source ~/.vim/scripts/setting.vim
-source ~/.vim/scripts/keymap.vim
-source ~/.vim/scripts/highlight.vim
-source ~/.vim/scripts/autocommand.vim
 source ~/.vim/scripts/plugin.vim
+source ~/.vim/scripts/setting.vim

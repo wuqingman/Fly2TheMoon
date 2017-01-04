@@ -1,9 +1,118 @@
+" 语法高亮
+syntax enable
+" 文件与插件、缩进检测
+filetype plugin indent on
+
+
+
+" 配置文件修改之后自动加载
+autocmd! bufwritepost $F2TM_project_path/vim/vim/scripts/*.vim,~/my_configure_files/vim/vimrc execute 'source %'
+" 进入插入模式时使用绝对行号
+autocmd InsertEnter * :set norelativenumber number
+" 退出插入模式时使用相对行号,关闭粘贴模式
+autocmd InsertLeave * :set relativenumber nonumber nopaste
+" 离开插入模式后自动关闭预览窗口
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" 打开文件时光标自动定位到上次的位置
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" 在yaml文件中不启用某些配置，会造成移动光标卡顿
+autocmd FileType yaml set nocursorcolumn nocursorline norelativenumber nonumber
+" 高亮关键词
+if v:version > 701
+    autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|DONE\|XXX\|BUG\|HACK\)')
+    autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\|NOTICE\)')
+endif
+
+
+
+" 重新定义高亮方案名
+" 防止错误整行标红导致看不清
+highlight clear SpellBad
+highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
+highlight clear SpellCap
+highlight SpellCap term=underline cterm=underline
+highlight clear SpellRare
+highlight SpellRare term=underline cterm=underline
+highlight clear SpellLocal
+highlight SpellLocal term=underline cterm=underline
+
+
+
+" 补全上下左右键的行为 会显示其他信息
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+
+" 关闭方向键, 强迫自己用 hjkl
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+
+" 分屏窗口移动
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
+
+" 快速翻页
+nnoremap <C-u> <PageUp>H
+nnoremap <C-d> <PageDown>H
+
+" 快速到行首行尾
+nnoremap J ^
+nnoremap K $
+
+
+" 命令行模式增强, <C-a>行首, <C-e>行尾
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
+" tab操作
+nnoremap <C-n> <Esc>:tabnext<CR>
+nnoremap <C-p> <Esc>:tabprev<CR>
+nnoremap <C-t> <Esc>:tabnew<CR>
+noremap <Leader><C-t> <Esc>:tabnew#<CR>
+
+noremap <Leader>1 1gt
+noremap <Leader>2 2gt
+noremap <Leader>3 3gt
+noremap <Leader>4 4gt
+noremap <Leader>5 5gt
+
+nnoremap <Leader>9 :tabnew<Space>$HOME/.vim/scripts/plugin.vim<CR>:vsp<Space>$HOME/.vim/scripts/setting.vim<CR>
+nnoremap <Leader>0 :tab<Space>h<CR>
+
+" 记录上一个tab的编号,方便快速切换回去
+let g:last_active_tab = 1
+autocmd TabLeave * let g:last_active_tab = tabpagenr()
+nnoremap <silent> <Leader>t :execute 'tabnext ' . g:last_active_tab<cr>
+
+" 调整缩进后自动选中，方便再次操作
+vnoremap < <gv
+vnoremap > >gv
+
+" 使用sudo保存
+cmap w!! w !sudo tee >/dev/null %
+
+" 去掉搜索高亮
+noremap <Leader>fq :nohls<CR>
+" 设置粘贴模式
+noremap <Leader>fw :set paste<ESC>i
+
+
+
+" 不使用vi兼容模式
+set nocompatible
 " history存储容量
 set history=100
 " 文件修改之后自动载入。
 set autoread
 " 启动的时候不显示那个援助索马里儿童的提示
-set shortmess=atI
+set shortmess=I
 " 命令行补全忽略部分文件
 set wildignore=*.swp,*.bak,*.py[o,c],*.class,.svn,*.o,*~,.git
 " 命令行补全模式
