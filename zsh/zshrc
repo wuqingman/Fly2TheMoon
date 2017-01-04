@@ -39,15 +39,6 @@ source $F2TM_project_path/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # | 2. 所有平台
 # -------------
 # 设置路径
-if [ -d /opt/tmux ]; then
-    export PATH="$PATH:/opt/tmux/bin"
-fi
-if [ -d /opt/shadowsocks-libev ]; then
-    export PATH="$PATH:/opt/shadowsocks-libev/bin/"
-fi
-if [ -d /$HOME/.pyenv ]; then
-    export PATH="$PATH:$HOME/.pyenv/bin"
-fi
 if [ -d /usr/local/man ]; then
     export MANPATH="/usr/local/man:$MANPATH"
 fi
