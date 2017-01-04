@@ -1,5 +1,7 @@
-export F2TM_project_name="Fly2TheMoon"
-export F2TM_project_path="$HOME/${F2TM_project_name}"
+F2TM_project_name="Fly2TheMoon"
+F2TM_project_path="$HOME/${F2TM_project_name}"
+F2TM_tmux_command="tmux new-session -s `whoami` || tmux attach-session -t `whoami`"
+
 
 # --------------------
 # | 1. oh-my-zsh的配置
@@ -64,18 +66,14 @@ alias zshrc='vim ~/.zshrc'
 alias tmuxrc='vim ~/.tmux.conf'
 alias vimrc='vim -O ~/.vim/scripts/plugin.vim ~/.vim/scripts/setting.vim'
 
-# 快速远程登录
-alias -g TX_OPT='-t "/opt/tmux/bin/tmux new-session -s `whoami` || /opt/tmux/bin/tmux attach-session -t `whoami`"'
-alias -g TX='-t "tmux new-session -s `whoami` || tmux attach-session -t `whoami`"'
-alias fssh_yihe_me='ssh hoh0@192.168.2.106 TX_OPT'
-alias fssh_yihe_lth='ssh lth@192.168.2.20'
-alias fssh_yihe_105='ssh root@192.168.2.105 TX_OPT'
-alias fssh_vb_master='ssh root@192.168.2.152 TX'
-alias fssh_vb_develop='ssh root@192.168.2.154 TX'
-alias fssh_online_146='ssh root@202.107.247.146 -p 28489 TX_OPT'
-
 # 快速进入tmux
-alias mars='tmux new-session -s `whoami` || tmux attach-session -t `whoami`'
+alias mars="$F2TM_tmux_command"
+# 快速远程登录
+alias fssh_yihe_me="ssh hoh0@192.168.2.106 -t \"$F2TM_tmux_command\""
+alias fssh_yihe_lth='ssh lth@192.168.2.20'
+alias fssh_yihe_105="ssh root@192.168.2.105 -t \"$F2TM_tmux_command\""
+alias fssh_vb_master="ssh root@192.168.2.152 -t \"$F2TM_tmux_command\""
+alias fssh_online_146="ssh root@202.107.247.146 -p 28489 -t \"$F2TM_tmux_command\""
 
 # privoxy代理
 if ps aux | grep -v grep | grep privoxy > /dev/null 2>&1; then
