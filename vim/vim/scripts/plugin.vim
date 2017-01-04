@@ -311,10 +311,14 @@ call vundle#begin()
     " nerdtree中显示git信息
     Plugin 'XuYuanp/nerdtree-git-plugin'
 
+    " 在右侧
+    let g:NERDTreeWinPos="right"
+    " 打开文件后自动关闭
+    let g:NERDTreeQuitOnOpen=1
     " 高亮行，但是在这个配色下好像无效
-    let NERDTreeHighlightCursorline=1
+    let g:NERDTreeHighlightCursorline=1
     " 以下文件不启用nerdtree
-    let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+    let g:NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
     " 键盘映射
     let g:NERDTreeMapOpenSplit = 's'
     let g:NERDTreeMapOpenVSplit = 'v'
@@ -332,7 +336,7 @@ call vundle#begin()
     " 在nerdtree中自动定位当前文件的位置
     let g:nerdtree_tabs_autofind=1
     " 切换tab时强制聚焦在文件窗口上而不是nerdtree上
-    let g:nerdtree_tabs_focus_on_files = 1
+    let g:nerdtree_tabs_focus_on_files = 0
 " }
 
 " gitgutter {

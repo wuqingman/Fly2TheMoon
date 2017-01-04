@@ -6,7 +6,7 @@ filetype plugin indent on
 
 
 " 配置文件修改之后自动加载
-autocmd! bufwritepost $F2TM_project_path/vim/vim/scripts/*.vim,~/my_configure_files/vim/vimrc execute 'source %'
+autocmd! bufwritepost $F2TM_project_path/vim/vim/scripts/*.vim,$F2TM_project_path/vim/vimrc execute 'source %'
 " 进入插入模式时使用绝对行号
 autocmd InsertEnter * :set norelativenumber number
 " 退出插入模式时使用相对行号,关闭粘贴模式
