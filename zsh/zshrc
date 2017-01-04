@@ -1,5 +1,4 @@
-F2TM_project_name="Fly2TheMoon"
-F2TM_project_path="$HOME/${F2TM_project_name}"
+export F2TM_project_path="$HOME/Fly2TheMoon"
 F2TM_tmux_command="tmux new-session -s `whoami` || tmux attach-session -t `whoami`"
 
 
