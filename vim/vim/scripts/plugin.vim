@@ -194,10 +194,9 @@ call vundle#begin()
     " 语法高亮
     let g:syntastic_enable_highlighting = 1
     " python的语法检查器
-    let g:syntastic_python_checkers = ['flake8', 'pep8', 'pyflakes', 'python']
+    let g:syntastic_python_checkers = ['flake8']
     " 语法检查器的参数，可配置忽略某些检查
     let g:syntastic_python_flake8_args = '--max-line-length=120 --ignore=""'
-    let g:syntastic_python_pep8_args = '--max-line-length=120 --ignore=""'
 " }
 
 
