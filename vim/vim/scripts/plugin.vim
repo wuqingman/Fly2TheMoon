@@ -10,6 +10,12 @@ call vundle#begin()
 " }
 
 
+" vim-colorschemes }
+    " 配色
+    Plugin 'flazz/vim-colorschemes'
+" }
+
+
 " delimitMate {
     " 引号补全
     Plugin 'Raimondi/delimitMate'
