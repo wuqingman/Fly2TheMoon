@@ -335,7 +335,7 @@ call vundle#begin()
     " 在nerdtree中自动定位当前文件的位置
     let g:nerdtree_tabs_autofind=1
     " 切换tab时强制聚焦在文件窗口上而不是nerdtree上
-    let g:nerdtree_tabs_focus_on_files = 0
+    let g:nerdtree_tabs_focus_on_files = 1
 " }
 
 " gitgutter {
