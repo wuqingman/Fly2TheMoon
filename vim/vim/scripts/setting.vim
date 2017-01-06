@@ -104,6 +104,14 @@ noremap <Leader>fq :nohls<CR>
 noremap <Leader>fw :set paste<ESC>i
 
 
+" 配色
+colorscheme PaperColor
+" 暗色背景色
+set background=dark
+" 突出显示当前行
+set cursorline
+" 显示竖线,防止代码超过最大文本长度
+set colorcolumn=120
 
 " 不使用vi兼容模式
 set nocompatible
@@ -131,8 +139,6 @@ set showmode
 set scrolloff=0
 " 文本长度
 set textwidth=120
-" 显示竖线,防止代码超过最大文本长度
-set colorcolumn=120
 " 命令行（在状态行下）的高度，默认为1，这里是2
 set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 " 底部状态栏显示2行
@@ -197,14 +203,10 @@ set noswapfile
 set sessionoptions+=tabpages,globals
 " 退格键在插入模式中的的使用范围
 set backspace=indent,eol,start
-" 背景色
-set background=dark
 " 总是显示标签页
 set showtabline=2
 " 突出显示当前行等
 set cursorcolumn
-" 突出显示当前行
-set cursorline
 " 相对行号
 set relativenumber
 " 分屏时新面板的位置

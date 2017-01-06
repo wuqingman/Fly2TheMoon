@@ -10,18 +10,6 @@ call vundle#begin()
 " }
 
 
-" Color {
-    " 配色
-    Plugin 'NLKNguyen/papercolor-theme'
-
-    " 加入rtp，否则会找不到
-    " 很奇怪在这一段附近rtp中并没有各个plugin的目录，只有Vundle.vim目录
-    " 可以在colorscheme语句前后加入set rtp来查看
-    set rtp+=~/.vim/bundle/papercolor-theme
-    colorscheme PaperColor
-" }
-
-
 " delimitMate {
     " 引号补全
     Plugin 'Raimondi/delimitMate'
@@ -70,14 +58,10 @@ call vundle#begin()
 " airline {
     " 状态栏增强
     Plugin 'vim-airline/vim-airline'
-    " 主题包
-    Plugin 'vim-airline/vim-airline-themes'
 
     if !exists('g:airline_symbols')
         let g:airline_symbols = {}
     endif
-    " 这个主题在papercolor-theme下面，在Color部分加过rtp了
-    let g:airline_theme = 'PaperColor'
     let g:airline_left_sep = '▶'
     let g:airline_left_alt_sep = '❯'
     let g:airline_right_sep = '◀'
