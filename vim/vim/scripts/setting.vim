@@ -17,6 +17,8 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 " 在yaml文件中不启用某些配置，会造成移动光标卡顿
 autocmd FileType yaml set nocursorcolumn nocursorline norelativenumber nonumber
+" 在gitcommit中竖线72个字符，符合git commit的规范
+autocmd FileType gitcommit set colorcolumn=72
 " 高亮关键词
 if v:version > 701
     autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|DONE\|XXX\|BUG\|HACK\)')
