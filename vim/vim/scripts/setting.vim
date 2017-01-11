@@ -110,6 +110,8 @@ colorscheme PaperColor
 set background=dark
 " 突出显示当前行
 set cursorline
+" 突出显示当前行等
+set cursorcolumn
 " 显示竖线,防止代码超过最大文本长度
 set colorcolumn=120
 
@@ -138,13 +140,13 @@ set showmode
 " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
 set scrolloff=0
 " 文本长度
-set textwidth=120
+" set textwidth=120
 " 命令行（在状态行下）的高度，默认为1，这里是2
 set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 " 底部状态栏显示2行
 set laststatus=2
 " 取消换行。
-set wrap
+" set wrap
 " 括号配对情况,跳转并高亮一下匹配的括号
 set showmatch
 " 2s后闪缩匹配的括号
@@ -205,8 +207,6 @@ set sessionoptions+=tabpages,globals
 set backspace=indent,eol,start
 " 总是显示标签页
 set showtabline=2
-" 突出显示当前行等
-set cursorcolumn
 " 相对行号
 set relativenumber
 " 分屏时新面板的位置
