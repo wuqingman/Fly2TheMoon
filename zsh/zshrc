@@ -52,43 +52,43 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # 快速编辑配置文件
-alias zshrc='vim ~/.zshrc'
-alias tmuxrc='vim ~/.tmux.conf'
-alias vimrc='vim -O ~/.vim/scripts/plugin.vim ~/.vim/scripts/setting.vim'
+alias zshrc="vim ~/.zshrc"
+alias tmuxrc="vim ~/.tmux.conf"
+alias vimrc="vim -O ~/.vim/scripts/plugin.vim ~/.vim/scripts/setting.vim"
 
 # 快速进入tmux
 alias mars="$F2TM_tmux_command"
 # 快速远程登录
 alias fssh_yihe_me="ssh hoh0@192.168.2.106 -t \"$F2TM_tmux_command\""
-alias fssh_yihe_lth='ssh lth@192.168.2.20'
+alias fssh_yihe_lth="ssh lth@192.168.2.20"
 alias fssh_yihe_105="ssh root@192.168.2.105 -t \"$F2TM_tmux_command\""
 alias fssh_vb_master="ssh root@192.168.2.152 -t \"$F2TM_tmux_command\""
 alias fssh_online_146="ssh root@202.107.247.146 -p 28489 -t \"$F2TM_tmux_command\""
 
 # privoxy代理
 if ps aux | grep -v grep | grep privoxy > /dev/null 2>&1; then
-    proxy_addr='http://127.0.0.1:8118'
+    proxy_addr="http://127.0.0.1:8118"
 else
-    proxy_addr='http://192.168.2.106:8118'
+    proxy_addr="http://192.168.2.106:8118"
 fi
 alias h="http_proxy=${proxy_addr} https_proxy=${proxy_addr} HTTP_PROXY=${proxy_addr} HTTPS_PROXY=${proxy_addr}"
 
 # docker
 if which docker > /dev/null 2>&1; then
-    alias dps='docker ps'
-    alias dim='docker images'
-    alias drm='docker rm'
-    alias drmi='docker rmi'
+    alias dps="docker ps"
+    alias dim="docker images"
+    alias drm="docker rm"
+    alias drmi="docker rmi"
 fi
 
 # VirtualBox
 if which vboxmanage > /dev/null 2>&1; then
-    alias vb='vboxmanage'
+    alias vb="vboxmanage"
 fi
 
 # gr, zsh plugin git中的别名gr='git remove'，所以git-run重新别名
 if which ggr > /dev/null 2>&1; then
-    alias ggr='/usr/local/bin/gr'
+    alias ggr="/usr/local/bin/gr"
     . <(ggr completion)
 fi
 
@@ -97,7 +97,7 @@ fi
 # ----------
 # | 3. MacOS
 # ----------
-if [ `uname -s` = 'Darwin' ];
+if [ `uname -s` = "Darwin" ];
 then
     # coreutils配置
     if [ -d /usr/local/opt/coreutils ]; then
@@ -113,7 +113,7 @@ fi
 # ----------
 # | 4. Linux
 # ----------
-if [ `uname -s` = 'Linux' ];
+if [ `uname -s` = "Linux" ];
 then
     alias ls='ls -l -h --color=auto --ignore="*\.pyc" --ignore="*\.pyo"'
     alias ll='ls -l -h --ignore="*\.pyc" --ignore="*\.pyo"'
