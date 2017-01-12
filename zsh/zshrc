@@ -75,7 +75,7 @@ alias h="http_proxy=${proxy_addr} https_proxy=${proxy_addr} HTTP_PROXY=${proxy_a
 
 # docker
 if which docker > /dev/null 2>&1; then
-    alias dps="docker ps"
+    alias dps='docker ps --format '\''table {{.Names}}\t{{.ID}}\t{{.Status}}\t{{.Image}}'\'''
     alias dim="docker images"
     alias drm="docker rm"
     alias drmi="docker rmi"
