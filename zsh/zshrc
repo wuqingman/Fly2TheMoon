@@ -87,8 +87,8 @@ if which vboxmanage > /dev/null 2>&1; then
 fi
 
 # gr, zsh plugin git中的别名gr='git remove'，所以git-run重新别名
-if which ggr > /dev/null 2>&1; then
-    alias ggr="/usr/local/bin/gr"
+if ! which ggr > /dev/null 2>&1 && [ -x /usr/bin/gr ]; then
+    alias ggr="/usr/bin/gr"
     . <(ggr completion)
 fi
 
