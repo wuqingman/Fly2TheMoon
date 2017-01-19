@@ -60,7 +60,9 @@ nnoremap <C-d> <PageDown>H
 
 " 快速到行首行尾
 nnoremap J ^
+vnoremap J ^
 nnoremap K $
+vnoremap K $
 
 
 " 命令行模式增强, <C-a>行首, <C-e>行尾
@@ -81,7 +83,7 @@ noremap <Leader>3 3gt
 noremap <Leader>4 4gt
 noremap <Leader>5 5gt
 
-nnoremap <Leader>9 :tabnew<Space>$HOME/.vim/scripts/plugin.vim<CR>:vsp<Space>$HOME/.vim/scripts/setting.vim<CR>
+nnoremap <Leader>9 :tabnew<Space>$HOME/.vim/scripts/plugin.vim<CR>:sp<Space>$HOME/.vim/scripts/setting.vim<CR>
 nnoremap <Leader>0 :tab<Space>h<CR>
 
 " 记录上一个tab的编号,方便快速切换回去
@@ -105,11 +107,9 @@ noremap <Leader>fw :set paste<ESC>i
 " 配色
 colorscheme PaperColor
 " 暗色背景色
-" set background=dark
+set background=dark
 " 突出显示当前行
 set cursorline
-" 突出显示当前行等
-" set cursorcolumn
 " 显示竖线,防止代码超过最大文本长度
 set colorcolumn=120
 

@@ -108,7 +108,7 @@ call plug#begin()
 
 " YouCompleteMe {
     " 代码自动补全
-    Plug 'Valloric/YouCompleteMe'
+    Plug 'Valloric/YouCompleteMe', { 'for': 'python' }
 
     let g:ycm_key_list_select_completion = ['<c-n>']
     let g:ycm_key_list_previous_completion = ['<c-p>']
@@ -146,9 +146,7 @@ call plug#begin()
 
 " session {
     " 会话管理
-    Plug 'xolox/vim-session'
-    " session插件的依赖
-    Plug 'xolox/vim-misc'
+    Plug 'xolox/vim-session' | Plug 'xolox/vim-misc'
 
     let g:session_autosave = 'yes'
     let g:session_autoload = 'no'
@@ -160,7 +158,7 @@ call plug#begin()
 
 " syntastic {
     " 多语言语法检查
-    Plug 'scrooloose/syntastic'
+    Plug 'scrooloose/syntastic', { 'for': 'python' }
 
     let g:syntastic_error_symbol = '>>'
     let g:syntastic_warning_symbol = '>'
@@ -181,8 +179,7 @@ call plug#begin()
 
 " ultisnips {
     " 代码补全
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
     let g:UltiSnipsExpandTrigger = "<tab>"
     let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -212,9 +209,7 @@ call plug#begin()
 
 " ctrlp {
     " 文件搜索
-    Plug 'ctrlpvim/ctrlp.vim'
-    " ctrlp插件 - 不用ctag进行函数快速跳转
-    Plug 'tacahiroy/ctrlp-funky'
+    Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
 
     let g:ctrlp_map = '<Leader>d'
     " 直接写死使用项目目录
@@ -283,11 +278,7 @@ call plug#begin()
 
 
 " nerdtree {
-    Plug 'scrooloose/nerdtree'
-    " 所有tab共享一个nerdtree
-    Plug 'jistr/vim-nerdtree-tabs'
-    " nerdtree中显示git信息
-    Plug 'XuYuanp/nerdtree-git-plugin'
+    Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs' | Plug 'XuYuanp/nerdtree-git-plugin'
 
     " 在右侧
     let g:NERDTreeWinPos="right"
