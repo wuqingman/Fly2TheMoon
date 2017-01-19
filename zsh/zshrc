@@ -62,7 +62,7 @@ alias mars="$F2TM_tmux_command"
 alias fssh_yihe_me="ssh hoh0@192.168.2.106 -t \"$F2TM_tmux_command\""
 alias fssh_yihe_lth="ssh lth@192.168.2.20"
 alias fssh_yihe_105="ssh root@192.168.2.105 -t \"$F2TM_tmux_command\""
-alias fssh_vb_master="ssh root@192.168.2.152 -t \"$F2TM_tmux_command\""
+alias fssh_vb_master="ssh root@192.168.2.154 -t \"$F2TM_tmux_command\""
 alias fssh_online_146="ssh root@202.107.247.146 -p 28489 -t \"$F2TM_tmux_command\""
 
 # privoxy代理
