@@ -13,5 +13,3 @@
     diff = auto
     branch = auto
     interactive = auto
-[merge]
-	ff = only
