@@ -158,7 +158,7 @@ call plug#begin()
 
 " syntastic {
     " 多语言语法检查
-    Plug 'scrooloose/syntastic', { 'for': 'python' }
+    Plug 'scrooloose/syntastic'
 
     let g:syntastic_error_symbol = '>>'
     let g:syntastic_warning_symbol = '>'
@@ -166,7 +166,7 @@ call plug#begin()
     let g:syntastic_check_on_open = 1
     " 保存文件时检查
     let g:syntastic_check_on_wq = 1
-    " 自动弹出错误列表
+    " 自动启用位置列表
     let g:syntastic_auto_loc_list = 0
     " 语法高亮
     let g:syntastic_enable_highlighting = 1

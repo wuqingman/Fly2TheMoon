@@ -95,8 +95,10 @@ nnoremap <silent> <Leader>t :execute 'tabnext ' . g:last_active_tab<cr>
 vnoremap < <gv
 vnoremap > >gv
 
-" 使用sudo保存
+" 保存
 cmap w!! w !sudo tee >/dev/null %
+nnoremap <silent> <C-s> :w<CR>
+inoremap <silent> <C-s> <Esc>:w<CR>
 
 " 去掉搜索高亮
 noremap <Leader>fq :nohls<CR>
