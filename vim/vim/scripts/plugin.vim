@@ -186,7 +186,7 @@ call vundle#begin()
     " python的语法检查器
     let g:syntastic_python_checkers = ['flake8']
     " 语法检查器的参数，可配置忽略某些检查
-    let g:syntastic_python_flake8_args = '--max-line-length=120 --ignore=""'
+    let g:syntastic_python_flake8_args = '--max-line-length=120 --ignore="E402"'
 " }
 
 
