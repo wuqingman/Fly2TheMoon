@@ -1,24 +1,15 @@
-set nocompatible
-filetype off
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Vundle {
-    " 插件管理
-    Plugin 'VundleVim/Vundle.vim'
-" }
+call plug#begin()
 
 
 " vim-colorschemes }
     " 配色
-    Plugin 'flazz/vim-colorschemes'
+    Plug 'flazz/vim-colorschemes'
 " }
 
 
 " delimitMate {
     " 引号补全
-    Plugin 'Raimondi/delimitMate'
+    Plug 'Raimondi/delimitMate'
 
     " python中的三引号注释使用"
     au FileType python let b:delimitMate_nesting_quotes = ['"']
@@ -28,7 +19,7 @@ call vundle#begin()
 
 " trailing-whitespace {
     " 去除行尾空格
-    Plugin 'bronson/vim-trailing-whitespace'
+    Plug 'bronson/vim-trailing-whitespace'
 
     "保存前删除多余空格
     fun! <SID>StripTrailingWhitespaces()
@@ -43,7 +34,7 @@ call vundle#begin()
 
 " easymotion {
     " 快速定位
-    Plugin 'Lokaltog/vim-easymotion'
+    Plug 'Lokaltog/vim-easymotion'
 
     let g:EasyMotion_smartcase = 1
     let g:EasyMotion_startofline = 0
@@ -57,13 +48,13 @@ call vundle#begin()
 
 " signature {
     " 快速标记
-    Plugin 'kshenoy/vim-signature'
+    Plug 'kshenoy/vim-signature'
 " }
 
 
 " airline {
     " 状态栏增强
-    Plugin 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline'
 
     if !exists('g:airline_symbols')
         let g:airline_symbols = {}
@@ -86,7 +77,7 @@ call vundle#begin()
 
 " rainbow_parentheses {
     " 括号显示增强
-    Plugin 'kien/rainbow_parentheses.vim'
+    Plug 'kien/rainbow_parentheses.vim'
 
     let g:rbpt_colorpairs = [
         \ ['brown',       'RoyalBlue3'],
@@ -117,7 +108,7 @@ call vundle#begin()
 
 " YouCompleteMe {
     " 代码自动补全
-    Plugin 'Valloric/YouCompleteMe'
+    Plug 'Valloric/YouCompleteMe'
 
     let g:ycm_key_list_select_completion = ['<c-n>']
     let g:ycm_key_list_previous_completion = ['<c-p>']
@@ -133,14 +124,12 @@ call vundle#begin()
     let g:ycm_collect_identifiers_from_tags_files = 1
     " buffer使用垂直分割打开
     let g:ycm_goto_buffer_command = 'new-or-existing-tab'
-    " 指定jedi的Python解释器路径，防止虚拟环境问题
-    let g:ycm_server_python_interpreter = '/usr/bin/python'
     " 服务器持续记录日志
     let g:ycm_server_keep_logfiles = 0
     " 直接触发自动补全 insert模式下
     let g:ycm_key_invoke_completion = '<C-Enter>'
     " 载入第三方包
-    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+    let g:ycm_global_ycm_extra_conf = "~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
     " 黑名单,不启用
     let g:ycm_filetype_blacklist = {
         \ 'tagbar': 1,
@@ -157,9 +146,9 @@ call vundle#begin()
 
 " session {
     " 会话管理
-    Plugin 'xolox/vim-session'
+    Plug 'xolox/vim-session'
     " session插件的依赖
-    Plugin 'xolox/vim-misc'
+    Plug 'xolox/vim-misc'
 
     let g:session_autosave = 'yes'
     let g:session_autoload = 'no'
@@ -171,7 +160,7 @@ call vundle#begin()
 
 " syntastic {
     " 多语言语法检查
-    Plugin 'scrooloose/syntastic'
+    Plug 'scrooloose/syntastic'
 
     let g:syntastic_error_symbol = '>>'
     let g:syntastic_warning_symbol = '>'
@@ -192,8 +181,8 @@ call vundle#begin()
 
 " ultisnips {
     " 代码补全
-    Plugin 'SirVer/ultisnips'
-    Plugin 'honza/vim-snippets'
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
 
     let g:UltiSnipsExpandTrigger = "<tab>"
     let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -223,9 +212,9 @@ call vundle#begin()
 
 " ctrlp {
     " 文件搜索
-    Plugin 'ctrlpvim/ctrlp.vim'
+    Plug 'ctrlpvim/ctrlp.vim'
     " ctrlp插件 - 不用ctag进行函数快速跳转
-    Plugin 'tacahiroy/ctrlp-funky'
+    Plug 'tacahiroy/ctrlp-funky'
 
     let g:ctrlp_map = '<Leader>d'
     " 直接写死使用项目目录
@@ -263,13 +252,13 @@ call vundle#begin()
 
 " surround {
     " 快速加入修改环绕字符
-    Plugin 'tpope/vim-surround'
+    Plug 'tpope/vim-surround'
 " }
 
 
 " multiple-cursors {
     " 多光标选中编辑
-    Plugin 'terryma/vim-multiple-cursors'
+    Plug 'terryma/vim-multiple-cursors'
 
     let g:multi_cursor_use_default_mapping=0
     let g:multi_cursor_next_key='<C-m>'
@@ -281,7 +270,7 @@ call vundle#begin()
 
 " taboo {
     " 标签重命名
-    Plugin 'gcmt/taboo.vim'
+    Plug 'gcmt/taboo.vim'
 
     nnoremap <Leader>ft :TabooRename<space>
 " }
@@ -289,16 +278,16 @@ call vundle#begin()
 
 " nerdcommenter {
     " 快速注释
-    Plugin 'scrooloose/nerdcommenter'
+    Plug 'scrooloose/nerdcommenter'
 " }
 
 
 " nerdtree {
-    Plugin 'scrooloose/nerdtree'
+    Plug 'scrooloose/nerdtree'
     " 所有tab共享一个nerdtree
-    Plugin 'jistr/vim-nerdtree-tabs'
+    Plug 'jistr/vim-nerdtree-tabs'
     " nerdtree中显示git信息
-    Plugin 'XuYuanp/nerdtree-git-plugin'
+    Plug 'XuYuanp/nerdtree-git-plugin'
 
     " 在右侧
     let g:NERDTreeWinPos="right"
@@ -329,7 +318,7 @@ call vundle#begin()
 " }
 
 " gitgutter {
-    Plugin 'airblade/vim-gitgutter'
+    Plug 'airblade/vim-gitgutter'
 
     set updatetime=250
     let g:gitgutter_map_keys = 0
@@ -339,10 +328,9 @@ call vundle#begin()
 " }
 
 " vimcdoc {
-    Plugin 'vimcn/vimcdoc'
+    Plug 'vimcn/vimcdoc'
     set helplang=cn
 " }
 
 
-call vundle#end()
-filetype plugin indent on
+call plug#end()

@@ -7,16 +7,12 @@ filetype plugin indent on
 
 " 配置文件修改之后自动加载
 autocmd! bufwritepost $F2TM_project_path/vim/vim/scripts/*.vim,$F2TM_project_path/vim/vimrc execute 'source %'
-" 进入插入模式时使用绝对行号
-autocmd InsertEnter * :set norelativenumber number
 " 退出插入模式时使用相对行号,关闭粘贴模式
-autocmd InsertLeave * :set relativenumber nonumber nopaste
+autocmd InsertLeave * :set nopaste
 " 离开插入模式后自动关闭预览窗口
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " 打开文件时光标自动定位到上次的位置
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-" 在yaml文件中不启用某些配置，会造成移动光标卡顿
-autocmd FileType yaml set nocursorcolumn nocursorline norelativenumber nonumber
 " 在gitcommit中竖线72个字符，符合git commit的规范
 autocmd FileType gitcommit set colorcolumn=72
 " 高亮关键词
@@ -109,18 +105,18 @@ noremap <Leader>fw :set paste<ESC>i
 " 配色
 colorscheme PaperColor
 " 暗色背景色
-set background=dark
+" set background=dark
 " 突出显示当前行
 set cursorline
 " 突出显示当前行等
-set cursorcolumn
+" set cursorcolumn
 " 显示竖线,防止代码超过最大文本长度
 set colorcolumn=120
 
 " 不使用vi兼容模式
 set nocompatible
 " history存储容量
-set history=100
+set history=10000
 " 文件修改之后自动载入。
 set autoread
 " 启动的时候不显示那个援助索马里儿童的提示
@@ -128,8 +124,6 @@ set shortmess=I
 " 命令行补全忽略部分文件
 set wildignore=*.swp,*.bak,*.py[o,c],*.class,.svn,*.o,*~,.git
 " 命令行补全模式
-set wildmode=list:longest
-" 增强模式中的命令行自动完成操作
 set wildmenu
 " 不启用鼠标
 set mouse=
@@ -141,14 +135,10 @@ set showcmd
 set showmode
 " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
 set scrolloff=0
-" 文本长度
-" set textwidth=120
 " 命令行（在状态行下）的高度，默认为1，这里是2
 set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 " 底部状态栏显示2行
 set laststatus=2
-" 取消换行。
-" set wrap
 " 括号配对情况,跳转并高亮一下匹配的括号
 set showmatch
 " 2s后闪缩匹配的括号
@@ -209,8 +199,6 @@ set sessionoptions+=tabpages,globals
 set backspace=indent,eol,start
 " 总是显示标签页
 set showtabline=2
-" 相对行号
-set relativenumber
 " 分屏时新面板的位置
 set splitright
 set splitbelow

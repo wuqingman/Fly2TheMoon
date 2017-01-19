@@ -1,8 +1,7 @@
 .DS_Store
 
 vim/vim/sessions
-vim/vim/bundle
-!vim/vim/bundle/Vundle.vim
+vim/vim/plugged
 
 tmux/tmux/resurrect
 tmux/tmux/plugins

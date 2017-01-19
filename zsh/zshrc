@@ -54,7 +54,7 @@ export LC_ALL=en_US.UTF-8
 # 快速编辑配置文件
 alias zshrc="vim ~/.zshrc"
 alias tmuxrc="vim ~/.tmux.conf"
-alias vimrc="vim -O ~/.vim/scripts/plugin.vim ~/.vim/scripts/setting.vim"
+alias vimrc="vim -o ~/.vim/scripts/plugin.vim ~/.vim/scripts/setting.vim"
 
 # 快速进入tmux
 alias mars="$F2TM_tmux_command"
