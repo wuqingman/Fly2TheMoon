@@ -1,9 +1,24 @@
 call plug#begin()
 
 
-" vim-colorschemes }
+" vim-colorschemes {
     " 配色
     Plug 'flazz/vim-colorschemes'
+" }
+
+
+" python {
+    Plug 'hdima/python-syntax'
+    Plug 'hynek/vim-python-pep8-indent'
+    Plug 'Glench/Vim-Jinja2-Syntax'
+    " pip install isort
+    Plug 'fisadev/vim-isort'
+    let g:vim_isort_map = '<C-i>'
+" }
+
+
+" json {
+    Plug 'elzr/vim-json', { 'for': 'json' }
 " }
 
 
@@ -75,34 +90,11 @@ call plug#begin()
 " }
 
 
-" rainbow_parentheses {
+" rainbow {
     " 括号显示增强
-    Plug 'kien/rainbow_parentheses.vim'
+    Plug 'luochen1990/rainbow'
 
-    let g:rbpt_colorpairs = [
-        \ ['brown',       'RoyalBlue3'],
-        \ ['Darkblue',    'SeaGreen3'],
-        \ ['darkgray',    'DarkOrchid3'],
-        \ ['darkgreen',   'firebrick3'],
-        \ ['darkcyan',    'RoyalBlue3'],
-        \ ['darkred',     'SeaGreen3'],
-        \ ['darkmagenta', 'DarkOrchid3'],
-        \ ['brown',       'firebrick3'],
-        \ ['gray',        'RoyalBlue3'],
-        \ ['darkmagenta', 'DarkOrchid3'],
-        \ ['Darkblue',    'firebrick3'],
-        \ ['darkgreen',   'RoyalBlue3'],
-        \ ['darkcyan',    'SeaGreen3'],
-        \ ['darkred',     'DarkOrchid3'],
-        \ ['red',         'firebrick3'],
-        \ ]
-    let g:rbpt_max = 16
-    let g:rbpt_loadcmd_toggle = 0
-    autocmd Syntax * RainbowParenthesesLoadRound
-    autocmd Syntax * RainbowParenthesesLoadSquare
-    autocmd Syntax * RainbowParenthesesLoadBraces
-    autocmd Syntax * RainbowParenthesesLoadChevrons
-    autocmd VimEnter,BufRead,BufNewFile * RainbowParenthesesToggle
+    let g:rainbow_active = 1
 " }
 
 
@@ -247,7 +239,7 @@ call plug#begin()
 
 " surround {
     " 快速加入修改环绕字符
-    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
 " }
 
 
@@ -267,6 +259,8 @@ call plug#begin()
     " 标签重命名
     Plug 'gcmt/taboo.vim'
 
+    " 保存回话的时候保存标签名
+    set sessionoptions+=tabpages,globals
     nnoremap <Leader>ft :TabooRename<space>
 " }
 

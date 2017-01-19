@@ -195,8 +195,6 @@ set t_Co=256
 set nobackup
 " 不要交换文件
 set noswapfile
-" 保存回话的时候保存标签名
-set sessionoptions+=tabpages,globals
 " 退格键在插入模式中的的使用范围
 set backspace=indent,eol,start
 " 总是显示标签页
@@ -204,3 +202,6 @@ set showtabline=2
 " 分屏时新面板的位置
 set splitright
 set splitbelow
+" 增加undo文件
+set undodir=~/.vim/sessions
+set undofile
