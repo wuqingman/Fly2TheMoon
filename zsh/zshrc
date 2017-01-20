@@ -13,14 +13,14 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(
     # 通用
-    common-aliases z sudo vundle colored-man-pages
+    common-aliases z sudo colored-man-pages extract cp
     # 特定OS
     osx brew
     # 开发工具
     gitfast git-extras
     docker docker-compose
     python pyenv
-    httpie
+    httpie urltools encode64
 )
 
 export ZSH=$F2TM_project_path/zsh/oh-my-zsh
@@ -45,6 +45,7 @@ fi
 # 默认编辑器
 if which vim > /dev/null 2>&1; then
     export EDITOR=vim
+    alias v="vim"
 fi
 
 # 语言
@@ -86,12 +87,30 @@ if which vboxmanage > /dev/null 2>&1; then
     alias vb="vboxmanage"
 fi
 
-# gr, zsh plugin git中的别名gr='git remove'，所以git-run重新别名
+# gr, 多repo的git管理工具
+# zsh plugin git中的别名gr='git remove'，所以git-run重新别名
 if ! which ggr > /dev/null 2>&1 && [ -x /usr/bin/gr ]; then
     alias ggr="/usr/bin/gr"
     . <(ggr completion)
 fi
 
+# trash-cli，rm升级版
+if which trash-put > /dev/null 2>&1; then
+    alias rm="trash-put"
+fi
+
+# htop，top升级版
+if which htop > /dev/null 2>&1; then
+    alias top="htop"
+fi
+
+# ccat，cat升级版
+if which ccat > /dev/null 2>&1; then
+    alias cat="ccat"
+fi
+
+#可视化cp命令
+alias cp="cpv"
 
 
 # ----------
