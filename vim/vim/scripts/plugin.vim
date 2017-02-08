@@ -17,8 +17,11 @@ call plug#begin()
 " }
 
 
-" json {
-    Plug 'elzr/vim-json', { 'for': 'json' }
+" json && markdown {
+    Plug 'elzr/vim-json' | Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+
+    let g:vim_markdown_toc_autofit = 1
+    let g:vim_markdown_json_frontmatter = 1
 " }
 
 
