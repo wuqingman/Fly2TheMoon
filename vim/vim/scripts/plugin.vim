@@ -151,25 +151,18 @@ call plug#begin()
 " }
 
 
-" syntastic {
-    " 多语言语法检查
-    Plug 'scrooloose/syntastic'
+" ale {
+    " 语法检查
+    Plug 'w0rp/ale'
 
-    let g:syntastic_error_symbol = '>>'
-    let g:syntastic_warning_symbol = '>'
-    " 打开文件时检查
-    let g:syntastic_check_on_open = 1
-    " 保存文件时检查
-    let g:syntastic_check_on_wq = 1
-    " 自动启用位置列表
-    let g:syntastic_auto_loc_list = 0
-    " 语法高亮
-    let g:syntastic_enable_highlighting = 1
-    " python的语法检查器
-    let g:syntastic_python_checkers = ['flake8']
-    " 语法检查器的参数，可配置忽略某些检查
-    let g:syntastic_python_flake8_args = '--max-line-length=120 --ignore="E402"'
-" }
+    let g:ale_linters = {
+    \   'python': ['flake8'],
+    \ }
+    let ale_python_flake8_args = '--max-line-length=120 --ignore="E402"'
+
+    nmap <silent> <Leader>n <Plug>(ale_next_wrap)
+    nmap <silent> <Leader>p <Plug>(ale_previous_wrap)
+"
 
 
 " ultisnips {
