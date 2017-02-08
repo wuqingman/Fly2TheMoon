@@ -244,6 +244,7 @@ call plug#begin()
     Plug 'terryma/vim-multiple-cursors'
 
     let g:multi_cursor_use_default_mapping=0
+    let g:multi_cursor_start_key='<F6>'
     let g:multi_cursor_next_key='<C-m>'
     let g:multi_cursor_prev_key='<C-p>'
     let g:multi_cursor_skip_key='<C-x>'
@@ -282,7 +283,7 @@ call plug#begin()
     let g:NERDTreeMapOpenSplit = 's'
     let g:NERDTreeMapOpenVSplit = 'v'
 
-    map <Leader>fn :NERDTreeTabsToggle<CR>
+    map <F1> :NERDTreeTabsToggle<CR>
     map <Leader>fm :NERDTreeFind<CR>
     " 终端启动vim时自动启动nerdtree
     let g:nerdtree_tabs_open_on_console_startup=0
@@ -307,6 +308,7 @@ call plug#begin()
     let g:gitgutter_highlight_lines = 1
     nnoremap <leader>fg :GitGutterToggle<CR>
 " }
+
 
 " vimcdoc {
     Plug 'vimcn/vimcdoc'
