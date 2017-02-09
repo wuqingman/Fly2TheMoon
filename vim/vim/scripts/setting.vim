@@ -112,6 +112,7 @@ colorscheme PaperColor
 set background=dark
 " 突出显示当前行
 set cursorline
+highlight CursorLine term=underline cterm=underline
 " 显示竖线,防止代码超过最大文本长度
 set colorcolumn=120
 
