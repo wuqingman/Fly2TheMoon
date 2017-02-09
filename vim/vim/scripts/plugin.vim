@@ -2,23 +2,24 @@ call plug#begin()
 
 
 " vim-colorschemes {
-    " 配色
     Plug 'flazz/vim-colorschemes'
 " }
 
 
-" python {
+" Python {
     Plug 'hdima/python-syntax'
     Plug 'hynek/vim-python-pep8-indent'
     Plug 'Glench/Vim-Jinja2-Syntax'
     " pip install isort
     Plug 'fisadev/vim-isort'
+
     let g:vim_isort_map = '<C-i>'
 " }
 
 
-" json && markdown {
-    Plug 'elzr/vim-json' | Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+" json & markdown {
+    Plug 'elzr/vim-json'
+    Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 
     let g:vim_markdown_toc_autofit = 1
     let g:vim_markdown_json_frontmatter = 1
@@ -26,7 +27,7 @@ call plug#begin()
 
 
 " delimitMate {
-    " 引号补全
+"   引号补全
     Plug 'Raimondi/delimitMate'
 
     " python中的三引号注释使用"
@@ -36,7 +37,7 @@ call plug#begin()
 
 
 " trailing-whitespace {
-    " 去除行尾空格
+"   去除行尾空格
     Plug 'bronson/vim-trailing-whitespace'
 
     "保存前删除多余空格
@@ -51,7 +52,7 @@ call plug#begin()
 
 
 " easymotion {
-    " 快速定位
+"   快速跳转
     Plug 'Lokaltog/vim-easymotion'
 
     let g:EasyMotion_smartcase = 1
@@ -65,13 +66,13 @@ call plug#begin()
 
 
 " signature {
-    " 快速标记
+"   快速标记
     Plug 'kshenoy/vim-signature'
 " }
 
 
 " airline {
-    " 状态栏增强
+"   状态栏增强
     Plug 'vim-airline/vim-airline'
 
     if !exists('g:airline_symbols')
@@ -94,7 +95,7 @@ call plug#begin()
 
 
 " rainbow {
-    " 括号显示增强
+"   括号显示增强
     Plug 'luochen1990/rainbow'
 
     let g:rainbow_active = 1
@@ -102,7 +103,7 @@ call plug#begin()
 
 
 " YouCompleteMe {
-    " 代码自动补全
+"   代码自动补全
     Plug 'Valloric/YouCompleteMe', { 'for': 'python' }
 
     let g:ycm_key_list_select_completion = ['<c-n>']
@@ -140,7 +141,7 @@ call plug#begin()
 
 
 " session {
-    " 会话管理
+"   会话管理
     Plug 'xolox/vim-session' | Plug 'xolox/vim-misc'
 
     let g:session_autosave = 'yes'
@@ -152,7 +153,7 @@ call plug#begin()
 
 
 " ale {
-    " 语法检查
+"   语法检查
     Plug 'w0rp/ale'
 
     let g:ale_linters = {
@@ -166,7 +167,7 @@ call plug#begin()
 
 
 " ultisnips {
-    " 代码补全
+"   代码补全
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
     let g:UltiSnipsExpandTrigger = "<tab>"
@@ -196,7 +197,7 @@ call plug#begin()
 
 
 " ctrlp {
-    " 文件搜索
+"   文件搜索
     Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
 
     let g:ctrlp_map = '<Leader>d'
@@ -234,13 +235,13 @@ call plug#begin()
 
 
 " surround {
-    " 快速加入修改环绕字符
+"   快速引号修正
     Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
 " }
 
 
 " multiple-cursors {
-    " 多光标选中编辑
+"   多光标选中编辑
     Plug 'terryma/vim-multiple-cursors'
 
     let g:multi_cursor_use_default_mapping=0
@@ -253,7 +254,7 @@ call plug#begin()
 
 
 " taboo {
-    " 标签重命名
+"   标签重命名
     Plug 'gcmt/taboo.vim'
 
     " 保存回话的时候保存标签名
@@ -263,12 +264,13 @@ call plug#begin()
 
 
 " nerdcommenter {
-    " 快速注释
+"   快速注释
     Plug 'scrooloose/nerdcommenter'
 " }
 
 
 " nerdtree {
+"   目录树
     Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs' | Plug 'XuYuanp/nerdtree-git-plugin'
 
     " 在右侧
@@ -299,7 +301,9 @@ call plug#begin()
     let g:nerdtree_tabs_focus_on_files = 1
 " }
 
+
 " gitgutter {
+"   git对比
     Plug 'airblade/vim-gitgutter'
 
     set updatetime=250
@@ -311,7 +315,9 @@ call plug#begin()
 
 
 " vimcdoc {
+"   vim中文文档
     Plug 'vimcn/vimcdoc'
+
     set helplang=cn
 " }
 
