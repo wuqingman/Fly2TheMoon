@@ -83,7 +83,7 @@ noremap <Leader>3 3gt
 noremap <Leader>4 4gt
 noremap <Leader>5 5gt
 
-nnoremap <Leader>9 :tabnew<Space>$HOME/.vim/scripts/plugin.vim<CR>:sp<Space>$HOME/.vim/scripts/setting.vim<CR>
+nnoremap <Leader>9 :tabnew<Space>$HOME/.vim/scripts/plugin.vim<CR>:vsp<Space>$HOME/.vim/scripts/setting.vim<CR>
 nnoremap <Leader>0 :tab<Space>h<CR>
 
 " 记录上一个tab的编号,方便快速切换回去

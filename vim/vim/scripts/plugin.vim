@@ -10,7 +10,7 @@ call plug#begin()
     Plug 'hdima/python-syntax'
     Plug 'hynek/vim-python-pep8-indent'
     Plug 'Glench/Vim-Jinja2-Syntax'
-    " pip install isort
+    " NOTICE: pip install isort
     Plug 'fisadev/vim-isort'
 
     let g:vim_isort_map = '<C-i>'
@@ -72,6 +72,7 @@ call plug#begin()
     let g:ctrlsf_position = 'right'
     let g:ctrlsf_winsize = '35%'
     let g:ctrlsf_default_root = '/work'
+    let g:ctrlsf_auto_close = 0
     nmap <F5> <Plug>CtrlSFCwordPath<CR>
 " }
 
@@ -80,7 +81,6 @@ call plug#begin()
 "   引号补全
     Plug 'Raimondi/delimitMate'
 
-    " python中的三引号注释使用"
     au FileType python let b:delimitMate_nesting_quotes = ['"']
     au FileType markdown let b:delimitMate_nesting_quotes = ['`']
 " }
@@ -90,7 +90,9 @@ call plug#begin()
 "   去除行尾空格
     Plug 'bronson/vim-trailing-whitespace'
 
-    "保存前删除多余空格
+    let g:extra_whitespace_ignored_filetypes = ['ctrlsf']
+
+    " 保存前删除多余空格
     fun! <SID>StripTrailingWhitespaces()
         let l = line(".")
         let c = col(".")
@@ -253,8 +255,6 @@ call plug#begin()
     Plug 'tacahiroy/ctrlp-funky'
 
     let g:ctrlp_map = '<Leader>d'
-    " " 直接写死使用项目目录
-    " let g:ctrlp_cmd = 'CtrlP /work/mapboom/'
     let g:ctrlp_custom_ignore = {
         \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
         \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
@@ -263,10 +263,8 @@ call plug#begin()
     let g:ctrlp_match_window_bottom=1
     let g:ctrlp_max_height=15
     let g:ctrlp_match_window_reversed=0
-    " mru模式存储的历史数
     let g:ctrlp_mruf_max=1000
     let g:ctrlp_follow_symlinks=1
-    " 强制使用缓存，加速显示文件列表
     let g:ctrlp_use_caching = 1
     " 如果安装了ag, 使用ag
     if executable('ag')
@@ -277,7 +275,7 @@ call plug#begin()
     nnoremap <Leader>fb :CtrlPBuffer<CR>
 
     let g:ctrlp_extensions = ['funky']
-    " 取消语法高亮，否则ale会检查ctrlp面板中的代码
+    " BUG: 取消语法高亮，否则ale会检查ctrlp面板中的代码
     let g:ctrlp_funky_syntax_highlight = 0
     let g:ctrlp_funky_after_jump = 'zt'
     let g:ctrlp_funky_sort_by_mru = 0
@@ -300,6 +298,7 @@ call plug#begin()
     Plug 'terryma/vim-multiple-cursors'
 
     let g:multi_cursor_use_default_mapping=0
+    " BUG: 使用C-m会改动<CR>的映射，改成F区按键
     let g:multi_cursor_start_key='<F6>'
     let g:multi_cursor_next_key='<C-m>'
     let g:multi_cursor_prev_key='<C-p>'
