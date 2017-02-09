@@ -268,7 +268,7 @@ call plug#begin()
     let g:ctrlp_extensions = ['funky']
     let g:ctrlp_funky_syntax_highlight = 1
     let g:ctrlp_funky_after_jump = 'zt'
-    let g:ctrlp_funky_sort_by_mru = 1
+    let g:ctrlp_funky_sort_by_mru = 0
     let g:ctrlp_funky_use_cache = 1
     nnoremap <Leader>fu :CtrlPFunky<CR>
     nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<CR>
