@@ -266,6 +266,11 @@ call plug#begin()
 " nerdcommenter {
 "   快速注释
     Plug 'scrooloose/nerdcommenter'
+
+    let g:NERDSpaceDelims = 1
+    let g:NERDDefaultAlign = 'left'
+    let g:NERDCommentEmptyLines = 1
+    let g:NERDTrimTrailingWhitespace = 1
 " }
 
 
