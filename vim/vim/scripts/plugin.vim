@@ -69,8 +69,9 @@ call plug#begin()
 "   文档搜索
     Plug 'dyng/ctrlsf.vim'
 
-    let g:ctrlsf_position = 'bottom'
-    let g:ctrlsf_winsize = '30%'
+    let g:ctrlsf_position = 'right'
+    let g:ctrlsf_winsize = '35%'
+    let g:ctrlsf_default_root = '/work'
     nmap <F5> <Plug>CtrlSFCwordPath<CR>
 " }
 
@@ -205,6 +206,7 @@ call plug#begin()
 "   语法检查
     Plug 'w0rp/ale'
 
+    let g:ale_open_list = 1
     let g:ale_linters = {
     \   'python': ['flake8'],
     \ }
@@ -338,7 +340,7 @@ call plug#begin()
     Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs' | Plug 'XuYuanp/nerdtree-git-plugin'
 
     " 在右侧
-    let g:NERDTreeWinPos="right"
+    let g:NERDTreeWinPos="left"
     " 打开文件后自动关闭
     let g:NERDTreeQuitOnOpen=1
     " 高亮行，但是在这个配色下好像无效
