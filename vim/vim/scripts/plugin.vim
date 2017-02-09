@@ -201,8 +201,8 @@ call plug#begin()
     Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
 
     let g:ctrlp_map = '<Leader>d'
-    " 直接写死使用项目目录
-    let g:ctrlp_cmd = 'CtrlP /work/mapboom/'
+    " " 直接写死使用项目目录
+    " let g:ctrlp_cmd = 'CtrlP /work/mapboom/'
     let g:ctrlp_custom_ignore = {
         \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
         \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
