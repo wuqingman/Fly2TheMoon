@@ -17,6 +17,13 @@ call plug#begin()
 " }
 
 
+" nginx {
+    Plug 'evanmiller/nginx-vim-syntax'
+
+    autocmd BufRead,BufNewFile */nginx/conf/conf.d/* set filetype=nginx
+" }
+
+
 " json & markdown {
     Plug 'elzr/vim-json'
     Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
