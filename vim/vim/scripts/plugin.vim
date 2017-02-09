@@ -57,11 +57,11 @@ call plug#begin()
 
     let g:EasyMotion_smartcase = 1
     let g:EasyMotion_startofline = 0
-    nnoremap <Leader><Leader>j <Plug>(easymotion-j)
-    nnoremap <Leader><Leader>k <Plug>(easymotion-k)
-    nnoremap <Leader><Leader>h <Plug>(easymotion-linebackward)
-    nnoremap <Leader><Leader>l <Plug>(easymotion-lineforward)
-    nnoremap <Leader><Leader>. <Plug>(easymotion-repeat)
+    map <Leader><Leader>j <Plug>(easymotion-j)
+    map <Leader><Leader>k <Plug>(easymotion-k)
+    map <Leader><Leader>h <Plug>(easymotion-linebackward)
+    map <Leader><Leader>l <Plug>(easymotion-lineforward)
+    map <Leader><Leader>. <Plug>(easymotion-repeat)
 " }
 
 
