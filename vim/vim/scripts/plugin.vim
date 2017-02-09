@@ -26,6 +26,46 @@ call plug#begin()
 " }
 
 
+" hyperfocus-writing {
+"   无干扰写作
+    Plug 'junegunn/limelight.vim'
+    Plug 'junegunn/goyo.vim'
+" }
+
+
+" incsearch.vim {
+"   搜索增强
+    Plug 'haya14busa/incsearch.vim'
+    Plug 'haya14busa/incsearch-fuzzy.vim'
+
+    set hlsearch
+    let g:incsearch#auto_nohlsearch = 1
+
+    map /  <Plug>(incsearch-forward)
+    map ?  <Plug>(incsearch-backward)
+    map g/ <Plug>(incsearch-stay)
+
+    map n  <Plug>(incsearch-nohl-n)
+    map N  <Plug>(incsearch-nohl-N)
+    map *  <Plug>(incsearch-nohl-*)
+    map #  <Plug>(incsearch-nohl-#)
+    map g* <Plug>(incsearch-nohl-g*)
+    map g# <Plug>(incsearch-nohl-g#)
+
+    map z/ <Plug>(incsearch-fuzzy-/)
+    map z? <Plug>(incsearch-fuzzy-?)
+    map zg/ <Plug>(incsearch-fuzzy-stay)
+" }
+
+
+" ctrlsf.vim {
+"   文档搜索
+    Plug 'dyng/ctrlsf.vim'
+
+    let g:ctrlsf_position = 'bottom'
+" }
+
+
 " delimitMate {
 "   引号补全
     Plug 'Raimondi/delimitMate'
@@ -250,6 +290,12 @@ call plug#begin()
     let g:multi_cursor_prev_key='<C-p>'
     let g:multi_cursor_skip_key='<C-x>'
     let g:multi_cursor_quit_key='<Esc>'
+" }
+
+
+" vim-expand-region {
+"   区域扩展
+    Plug 'terryma/vim-expand-region'
 " }
 
 
