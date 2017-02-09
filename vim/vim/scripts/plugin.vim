@@ -70,6 +70,8 @@ call plug#begin()
     Plug 'dyng/ctrlsf.vim'
 
     let g:ctrlsf_position = 'bottom'
+    let g:ctrlsf_winsize = '30%'
+    nmap <F5> <Plug>CtrlSFCwordPath<CR>
 " }
 
 
@@ -273,10 +275,13 @@ call plug#begin()
     nnoremap <Leader>fb :CtrlPBuffer<CR>
 
     let g:ctrlp_extensions = ['funky']
-    let g:ctrlp_funky_syntax_highlight = 1
+    " 取消语法高亮，否则ale会检查ctrlp面板中的代码
+    let g:ctrlp_funky_syntax_highlight = 0
     let g:ctrlp_funky_after_jump = 'zt'
     let g:ctrlp_funky_sort_by_mru = 0
     let g:ctrlp_funky_use_cache = 1
+    let g:ctrlp_funky_matchtype = 'path'
+    let g:ctrlp_funky_nolim = 1
     nnoremap <Leader>fu :CtrlPFunky<CR>
     nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<CR>
 " }
