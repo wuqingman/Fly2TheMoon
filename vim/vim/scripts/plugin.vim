@@ -368,6 +368,15 @@ call plug#begin()
 " }
 
 
+" tagbar {
+"   标签栏
+    Plug 'majutsushi/tagbar'
+
+    let g:tagbar_autoclose = 1
+    nmap <F2> :TagbarToggle<CR>
+" }
+
+
 " gitgutter {
 "   git对比
     Plug 'airblade/vim-gitgutter'
