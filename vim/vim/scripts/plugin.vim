@@ -238,7 +238,8 @@ call plug#begin()
 
 " ctrlp {
 "   文件搜索
-    Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'tacahiroy/ctrlp-funky'
 
     let g:ctrlp_map = '<Leader>d'
     " " 直接写死使用项目目录
@@ -264,11 +265,11 @@ call plug#begin()
     nnoremap <Leader>ff :CtrlPMRU<CR>
     nnoremap <Leader>fb :CtrlPBuffer<CR>
 
+    let g:ctrlp_extensions = ['funky']
     let g:ctrlp_funky_syntax_highlight = 1
     let g:ctrlp_funky_after_jump = 'zt'
     let g:ctrlp_funky_sort_by_mru = 1
     let g:ctrlp_funky_use_cache = 1
-    let g:ctrlp_extensions = ['funky']
     nnoremap <Leader>fu :CtrlPFunky<CR>
     nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<CR>
 " }
