@@ -87,8 +87,8 @@ call plug#begin()
 "   引号补全
     Plug 'Raimondi/delimitMate'
 
-    au FileType python let b:delimitMate_nesting_quotes = ['"']
-    au FileType markdown let b:delimitMate_nesting_quotes = ['`']
+    au FileType python let b:delimitMate_nesting_quotes = ["\"", "\'"]
+    au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
 " }
 
 
@@ -214,7 +214,7 @@ call plug#begin()
 "   语法检查
     Plug 'w0rp/ale'
 
-    let g:ale_open_list = 1
+    let g:ale_open_list = 0
     let g:ale_linters = {
     \   'python': ['flake8'],
     \ }
@@ -265,13 +265,13 @@ call plug#begin()
         \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
         \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
         \ }
-    let g:ctrlp_working_path_mode=0
-    let g:ctrlp_match_window_bottom=1
-    let g:ctrlp_max_height=15
-    let g:ctrlp_match_window_reversed=0
-    let g:ctrlp_mruf_max=1000
-    let g:ctrlp_follow_symlinks=1
-    let g:ctrlp_use_caching = 1
+    let g:ctrlp_working_path_mode = 'ra'
+    let g:ctrlp_match_window_bottom = 1
+    let g:ctrlp_max_height = 15
+    let g:ctrlp_match_window_reversed = 0
+    let g:ctrlp_mruf_max = 1000
+    let g:ctrlp_follow_symlinks = 1
+    let g:ctrlp_use_caching  =  1
     " 如果安装了ag, 使用ag
     if executable('ag')
         let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
