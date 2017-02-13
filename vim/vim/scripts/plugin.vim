@@ -40,6 +40,12 @@ call plug#begin()
 " }
 
 
+" drawit {
+"   画图
+    Plug 'DrawIt'
+" }
+
+
 " incsearch.vim {
 "   搜索增强
     Plug 'haya14busa/incsearch.vim'
