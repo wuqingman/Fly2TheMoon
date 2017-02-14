@@ -7,26 +7,26 @@ call plug#begin()
 
 
 " Python {
-    Plug 'hdima/python-syntax'
-    Plug 'hynek/vim-python-pep8-indent'
-    Plug 'Glench/Vim-Jinja2-Syntax'
+    Plug 'hdima/python-syntax', {'for': ['python']}
+    Plug 'hynek/vim-python-pep8-indent', {'for': ['python']}
+    Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['python']}
     " NOTICE: pip install isort
-    Plug 'fisadev/vim-isort'
+    Plug 'fisadev/vim-isort', {'for': ['python']}
 
     let g:vim_isort_map = '<C-i>'
 " }
 
 
 " nginx {
-    Plug 'evanmiller/nginx-vim-syntax'
+    Plug 'evanmiller/nginx-vim-syntax', {'for': ['nginx']}
 
     autocmd BufRead,BufNewFile */nginx/conf/conf.d/* set filetype=nginx
 " }
 
 
 " json & markdown {
-    Plug 'elzr/vim-json'
-    Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+    Plug 'elzr/vim-json', {'for': ['json']}
+    Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown', {'for': ['markdown']}
 
     let g:vim_markdown_toc_autofit = 1
     let g:vim_markdown_json_frontmatter = 1
@@ -35,14 +35,14 @@ call plug#begin()
 
 " hyperfocus-writing {
 "   无干扰写作
-    Plug 'junegunn/limelight.vim'
-    Plug 'junegunn/goyo.vim'
+    Plug 'junegunn/limelight.vim', {'for': ['text']}
+    Plug 'junegunn/goyo.vim', {'for': ['text']}
 " }
 
 
 " drawit {
 "   画图
-    Plug 'DrawIt'
+    Plug 'DrawIt', {'for': ['text']}
 " }
 
 
@@ -162,7 +162,7 @@ call plug#begin()
 
 " YouCompleteMe {
 "   代码自动补全
-    Plug 'Valloric/YouCompleteMe', { 'for': 'python' }
+    Plug 'Valloric/YouCompleteMe'
 
     let g:ycm_key_list_select_completion = ['<c-n>']
     let g:ycm_key_list_previous_completion = ['<c-p>']
@@ -227,7 +227,7 @@ call plug#begin()
 
 " ultisnips {
 "   代码补全
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets', {'for': ['python']}
 
     let g:UltiSnipsExpandTrigger = "<tab>"
     let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -375,10 +375,14 @@ call plug#begin()
 
 " tagbar {
 "   标签栏
-    Plug 'majutsushi/tagbar'
+    Plug 'majutsushi/tagbar', {'for': ['python', 'sh']}
 
-    let g:tagbar_autoclose = 1
+    let g:tagbar_autoclose = 0
+    let g:tagbar_compact = 0
+    let g:tagbar_map_nexttag = '<C-j>'
+    let g:tagbar_map_prevtag = '<C-k>'
     nmap <F2> :TagbarToggle<CR>
+    " autocmd FileType python nested :call tagbar#autoopen(0)
 " }
 
 
@@ -396,7 +400,7 @@ call plug#begin()
 
 " vimcdoc {
 "   vim中文文档
-    Plug 'vimcn/vimcdoc'
+    Plug 'vimcn/vimcdoc', {'branch': 'release'}
 
     set helplang=cn
 " }
