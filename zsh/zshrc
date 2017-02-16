@@ -13,9 +13,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(
     # 通用
-    common-aliases z sudo colored-man-pages extract cp
+    common-aliases z sudo colored-man-pages extract cp tmux
     # 特定OS
-    osx brew
+    osx brew dnf systemd
     # 开发工具
     gitfast git-extras
     docker docker-compose
