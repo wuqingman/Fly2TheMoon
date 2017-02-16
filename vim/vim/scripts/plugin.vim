@@ -35,8 +35,8 @@ call plug#begin()
 
 " hyperfocus-writing {
 "   无干扰写作
-    Plug 'junegunn/limelight.vim', {'for': ['text']}
-    Plug 'junegunn/goyo.vim', {'for': ['text']}
+    Plug 'junegunn/limelight.vim', {'for': ['text', 'markdown']}
+    Plug 'junegunn/goyo.vim', {'for': ['text', 'markdown']}
 " }
 
 
@@ -99,13 +99,13 @@ call plug#begin()
     let g:extra_whitespace_ignored_filetypes = ['ctrlsf']
 
     " 保存前删除多余空格
-    fun! <SID>StripTrailingWhitespaces()
+    function! StripTrailingWhitespaces()
         let l = line(".")
         let c = col(".")
         %s/\s\+$//e
         call cursor(l, c)
-    endfun
-    autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+    endfunction
+    autocmd! BufWritePre <buffer> :call StripTrailingWhitespaces()
 " }
 
 
@@ -379,6 +379,7 @@ call plug#begin()
 
     let g:tagbar_autoclose = 0
     let g:tagbar_compact = 0
+    let g:tagbar_sort = 0
     let g:tagbar_map_nexttag = '<C-j>'
     let g:tagbar_map_prevtag = '<C-k>'
     nmap <F2> :TagbarToggle<CR>

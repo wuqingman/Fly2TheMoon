@@ -8,13 +8,13 @@ filetype plugin indent on
 " 配置文件修改之后自动加载
 autocmd! BufWritePost $F2TM_project_path/vim/vim/scripts/*.vim,$F2TM_project_path/vim/vimrc execute 'source %'
 " 退出插入模式时使用相对行号,关闭粘贴模式
-autocmd InsertLeave * :set nopaste
+autocmd! InsertLeave * :set nopaste
 " 离开插入模式后自动关闭预览窗口
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+autocmd! InsertLeave * if pumvisible() == 0|pclose|endif
 " 打开文件时光标自动定位到上次的位置
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+autocmd! BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 " 在gitcommit中竖线72个字符，符合git commit的规范
-autocmd FileType gitcommit :set colorcolumn=72
+autocmd! FileType gitcommit :set colorcolumn=72
 " 高亮关键词
 if v:version > 701
     autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|DONE\|XXX\|BUG\|HACK\)')
@@ -75,20 +75,31 @@ cnoremap <C-e> <End>
 nnoremap <C-n> <Esc>:tabnext<CR>
 nnoremap <C-p> <Esc>:tabprev<CR>
 nnoremap <C-t> <Esc>:tabnew<CR>
-noremap <Leader><C-t> <Esc>:tabnew#<CR>
+nnoremap <Leader><C-t> <Esc>:tabnew#<CR>
 
-noremap <Leader>1 1gt
-noremap <Leader>2 2gt
-noremap <Leader>3 3gt
-noremap <Leader>4 4gt
-noremap <Leader>5 5gt
-
+nnoremap <Leader>1 1gt
+nnoremap <Leader>2 2gt
+nnoremap <Leader>3 3gt
+nnoremap <Leader>4 4gt
+nnoremap <Leader>5 5gt
 nnoremap <Leader>9 :tabnew<Space>$HOME/.vim/scripts/plugin.vim<CR>:vsp<Space>$HOME/.vim/scripts/setting.vim<CR>
 nnoremap <Leader>0 :tab<Space>h<CR>
 
+" 快速关闭
+function! CloseTabOrCloseVim()
+    let page_num_in_vim = tabpagenr("$")
+    if page_num_in_vim == 1
+        :qa
+    else
+        :tabc
+    endif
+endfunction
+nnoremap <Leader>q :call CloseTabOrCloseVim()<CR>
+nnoremap qq :q<CR>
+
 " 记录上一个tab的编号,方便快速切换回去
 let g:last_active_tab = 1
-autocmd TabLeave * let g:last_active_tab = tabpagenr()
+autocmd! TabLeave * let g:last_active_tab = tabpagenr()
 nnoremap <silent> <Leader>t :execute 'tabnext ' . g:last_active_tab<cr>
 
 " 调整缩进后自动选中，方便再次操作
