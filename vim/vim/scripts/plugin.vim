@@ -99,13 +99,13 @@ call plug#begin()
     let g:extra_whitespace_ignored_filetypes = ['ctrlsf']
 
     " 保存前删除多余空格
-    function! StripTrailingWhitespaces()
+    function! <SID>StripTrailingWhitespaces()
         let l = line(".")
         let c = col(".")
         %s/\s\+$//e
         call cursor(l, c)
     endfunction
-    autocmd! BufWritePre <buffer> :call StripTrailingWhitespaces()
+    autocmd! BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 " }
 
 

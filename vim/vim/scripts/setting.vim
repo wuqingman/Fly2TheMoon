@@ -14,7 +14,13 @@ autocmd! InsertLeave * if pumvisible() == 0|pclose|endif
 " 打开文件时光标自动定位到上次的位置
 autocmd! BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 " 在gitcommit中竖线72个字符，符合git commit的规范
-autocmd! FileType gitcommit :set colorcolumn=72
+" 不再定位到上次的位置，每次都从文件头开始编辑
+function! <SID>GitCommitEditMsg()
+    :set colorcolumn=72
+    exec "normal! gg"
+endfunction
+autocmd! BufReadPost COMMIT_EDITMSG :call <SID>GitCommitEditMsg()
+
 " 高亮关键词
 if v:version > 701
     autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|DONE\|XXX\|BUG\|HACK\)')
@@ -86,7 +92,7 @@ nnoremap <Leader>9 :tabnew<Space>$HOME/.vim/scripts/plugin.vim<CR>:vsp<Space>$HO
 nnoremap <Leader>0 :tab<Space>h<CR>
 
 " 快速关闭
-function! CloseTabOrCloseVim()
+function! <SID>CloseTabOrCloseVim()
     let page_num_in_vim = tabpagenr("$")
     if page_num_in_vim == 1
         :qa
@@ -94,7 +100,7 @@ function! CloseTabOrCloseVim()
         :tabc
     endif
 endfunction
-nnoremap <Leader>q :call CloseTabOrCloseVim()<CR>
+nnoremap <Leader>q :call <SID>CloseTabOrCloseVim()<CR>
 nnoremap qq :q<CR>
 
 " 记录上一个tab的编号,方便快速切换回去
