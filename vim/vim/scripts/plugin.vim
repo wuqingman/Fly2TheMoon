@@ -162,7 +162,7 @@ call plug#begin()
 
 " YouCompleteMe {
 "   代码自动补全
-    Plug 'Valloric/YouCompleteMe'
+    Plug 'Valloric/YouCompleteMe', {'for': ['python']}
 
     let g:ycm_key_list_select_completion = ['<c-n>']
     let g:ycm_key_list_previous_completion = ['<c-p>']

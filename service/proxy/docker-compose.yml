@@ -1,0 +1,32 @@
+version: '2.0'
+services:
+    shadowsocks:
+        image: zhenkyle/docker-sslocal
+        container_name: sslocal
+        restart: always
+        ports:
+            - "${SS_LOCAL_PORT}:${SS_LOCAL_PORT}"
+        entrypoint:
+            - sslocal
+            - -s
+            - ${SS_SERVER}
+            - -p
+            - ${SS_SERVER_PORT}
+            - -b
+            - ${SS_LOCAL_ADDRESS}
+            - -l
+            - ${SS_LOCAL_PORT}
+            - -k
+            - ${SS_PASSWORD}
+            - -m
+            - ${SS_METHOD}
+    privoxy:
+        image: vimagick/privoxy
+        container_name: privoxy
+        restart: always
+        ports:
+            - "${PRIVOXY_PORT}:${PRIVOXY_PORT}"
+        volumes:
+            - ./user.action:/etc/privoxy/user.action
+        cap_add:
+            - NET_ADMIN
