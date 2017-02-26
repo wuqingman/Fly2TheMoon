@@ -58,7 +58,9 @@ alias tmuxrc="vim ~/.tmux.conf"
 alias vimrc="vim -O ~/.vim/scripts/plugin.vim ~/.vim/scripts/setting.vim"
 
 # 快速进入tmux
-alias mars="$F2TM_tmux_command"
+if which tmux > /dev/null 2>&1; then
+    alias mars="$F2TM_tmux_command"
+fi
 # 快速远程登录
 alias fsshme="ssh hoh0@192.168.2.106 -t \"$F2TM_tmux_command\""
 alias fsshlth="ssh lth@192.168.2.20"
