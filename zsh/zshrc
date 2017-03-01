@@ -14,13 +14,13 @@ export LC_ALL=en_US.UTF-8
 
 # 命令检查
 which git > /dev/null 2>&1
-F2TM_git_exist=$?
+git_exist=$?
 which tmux > /dev/null 2>&1
-F2TM_tmux_exist=$?
+tmux_exist=$?
 which docker > /dev/null 2>&1
-F2TM_docke_exist=$?
+docker_exist=$?
 which rsync > /dev/null 2>&1
-F2TM_rsync_exist=$?
+rsync_exist=$?
 
 
 
@@ -39,9 +39,9 @@ if which vim > /dev/null 2>&1; then
 fi
 
 # 快速编辑配置文件
-alias zshrc="vim ~/.zshrc"
-alias tmuxrc="vim ~/.tmux.conf"
-alias vimrc="vim -O ~/.vim/scripts/plugin.vim ~/.vim/scripts/setting.vim"
+alias zshrc="vim $HOME/.zshrc"
+alias tmuxrc="vim $HOME/.tmux.conf"
+alias vimrc="vim -O $HOME/.vim/scripts/plugin.vim $HOME/.vim/scripts/setting.vim"
 
 # 代理
 if ps aux | grep -v grep | grep privoxy > /dev/null 2>&1; then
@@ -52,21 +52,21 @@ fi
 alias h="http_proxy=${proxy_addr} https_proxy=${proxy_addr} HTTP_PROXY=${proxy_addr} HTTPS_PROXY=${proxy_addr}"
 
 # 快速登录
-F2TM_tmux_command="tmux new-session -s `whoami` || tmux attach-session -t `whoami`"
-F2TM_tmux_plugin_path="$HOME/.tmux/plugins"
-if [ $F2TM_tmux_exist ];then
-    alias mars="$F2TM_tmux_command"
+tmux_command="tmux new-session -s `whoami` || tmux attach-session -t `whoami`"
+tmux_plugin_path="$HOME/.tmux/plugins"
+if [ $tmux_exist ];then
+    alias mars="$tmux_command"
 fi
-if [ ! -d $F2TM_tmux_plugin_path/tpm ];then
-    https_proxy=$proxy_addr git clone https://github.com/tmux-plugins/tpm $F2TM_tmux_plugin_path/tpm
+if [ ! -d $tmux_plugin_path/tpm ];then
+    https_proxy=$proxy_addr git clone https://github.com/tmux-plugins/tpm $tmux_plugin_path/tpm
 fi
-alias fsshme="ssh hoh0@192.168.2.106 -t \"$F2TM_tmux_command\""
+alias fsshme="ssh hoh0@192.168.2.106 -t \"$tmux_command\""
 alias fsshlth="ssh lth@192.168.2.20"
-alias fssh105="ssh root@192.168.2.105 -t \"$F2TM_tmux_command\""
-alias fssh146="ssh root@202.107.247.146 -p 28489 -t \"$F2TM_tmux_command\""
-alias fsshmaster="ssh root@192.168.2.154 -t \"$F2TM_tmux_command\""
-alias fsshfirefly="ssh root@192.168.2.150 -t \"$F2TM_tmux_command\""
-alias fsshfireflydesktop="ssh root@192.168.2.151 -t \"$F2TM_tmux_command\""
+alias fssh105="ssh root@192.168.2.105 -t \"$tmux_command\""
+alias fssh146="ssh root@202.107.247.146 -p 28489 -t \"$tmux_command\""
+alias fsshmaster="ssh root@192.168.2.154 -t \"$tmux_command\""
+alias fsshfirefly="ssh root@192.168.2.150 -t \"$tmux_command\""
+alias fsshfireflydesktop="ssh root@192.168.2.151 -t \"$tmux_command\""
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -81,7 +81,7 @@ eval "$(pyenv init - zsh)"
 eval "$(pyenv virtualenv-init - zsh)"
 
 # docker
-if [ $F2TM_docke_exist ]; then
+if [ $docker_exist ]; then
     alias dps='docker ps --format '\''table {{.Names}}\t{{.ID}}\t{{.Status}}\t{{.Image}}'\'''
     alias dim="docker images"
     alias drm="docker rm"
@@ -116,7 +116,7 @@ if which vboxmanage > /dev/null 2>&1; then
 fi
 
 #可视化cp命令
-if [ $F2TM_rsync_exist ]; then
+if [ $rsync_exist ]; then
     alias cp="cpv"
 fi
 
@@ -158,11 +158,11 @@ zplug "plugins/extract", from:oh-my-zsh
 zplug "plugins/z", from:oh-my-zsh
 # oh-my-zsh，命令相关
 zplug "plugins/cp", from:oh-my-zsh, if:"which rsync > /dev/null 2>&1"
-zplug "plugins/tmux", from:oh-my-zsh, if:"[ $F2TM_tmux_exist ]"
-zplug "plugins/gitfast", from:oh-my-zsh, if:"[ $F2TM_git_exist ]"
-zplug "plugins/git-extras", from:oh-my-zsh, if:"[ $F2TM_git_exist ]"
-zplug "plugins/gitignore", from:oh-my-zsh, if:"[ $F2TM_git_exist ]"
-zplug "plugins/docker", from:oh-my-zsh, if:"[ $F2TM_docke_exist ]"
+zplug "plugins/tmux", from:oh-my-zsh, if:"[ $tmux_exist ]"
+zplug "plugins/gitfast", from:oh-my-zsh, if:"[ $git_exist ]"
+zplug "plugins/git-extras", from:oh-my-zsh, if:"[ $git_exist ]"
+zplug "plugins/gitignore", from:oh-my-zsh, if:"[ $git_exist ]"
+zplug "plugins/docker", from:oh-my-zsh, if:"[ $docker_exist ]"
 zplug "plugins/docker-compose", from:oh-my-zsh, if:"which docker-compose > /dev/null 2>&1"
 zplug "plugins/python", from:oh-my-zsh, if:"which python > /dev/null 2>&1"
 zplug "plugins/httpie", from:oh-my-zsh, if:"which http > /dev/null 2>&1"
