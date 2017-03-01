@@ -165,6 +165,7 @@ zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == darwin* ]]"
 zplug "plugins/brew", from:oh-my-zsh, if:"[[ $OSTYPE == darwin* ]] && which brew > /dev/null 2>&1"
 zplug "plugins/dnf", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which dnf > /dev/null 2>&1"
 zplug "plugins/systemd", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which systemctl > /dev/null 2>&1"
+zplug "plugins/archlinux", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which pacman > /dev/null 2>&1"
 # oh-my-zsh，主题
 zplug "lib/theme-and-appearance", from:oh-my-zsh
 zplug "themes/afowler", from:oh-my-zsh, as:theme
