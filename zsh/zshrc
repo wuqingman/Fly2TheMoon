@@ -146,7 +146,6 @@ alias dud='du -d 1 -h'
 alias duf='du -sh *'
 alias fd='find . -type d -name'
 alias ff='find . -type f -name'
-alias h='history'
 # Make zsh know about hosts already accessed by SSH
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
