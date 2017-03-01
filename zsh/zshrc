@@ -3,8 +3,6 @@
 # -------------------
 # 取消ctrl+q/ctrl+s的锁定终端
 stty -ixon
-# 终端使用emacs的按键
-bindkey -e
 
 # 自定义的环境变量
 export F2TM_project_path="$HOME/Fly2TheMoon"
@@ -125,6 +123,23 @@ base_ls='ls -h --color=auto --ignore="*\.pyc" --ignore="*\.pyo"'
 alias ll="$base_ls -l"
 alias la="$base_ls -al"
 
+# 目录相关
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
+
+alias -- -='cd -'
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+
 # 不同的OS不同的配置
 if [[ $OSTYPE == darwin* ]]; then
     if [ -d /usr/local/opt/coreutils ]; then
@@ -152,6 +167,12 @@ zplug "zsh-users/zsh-history-substring-search", defer:3
 bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
 # oh-my-zsh，通用
+zplug "lib/completion", from:oh-my-zsh
+zplug "lib/grep", from:oh-my-zsh
+zplug "lib/history", from:oh-my-zsh
+zplug "lib/key-bindings", from:oh-my-zsh
+zplug "lib/termsupport", from:oh-my-zsh
+zplug "lib/theme-and-appearance", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/extract", from:oh-my-zsh
@@ -173,7 +194,6 @@ zplug "plugins/dnf", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which dnf
 zplug "plugins/systemd", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which systemctl > /dev/null 2>&1"
 zplug "plugins/archlinux", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which pacman > /dev/null 2>&1"
 # oh-my-zsh，主题
-zplug "lib/theme-and-appearance", from:oh-my-zsh
 zplug "themes/afowler", from:oh-my-zsh, as:theme
 # zplug
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
