@@ -53,7 +53,13 @@ alias h="http_proxy=${proxy_addr} https_proxy=${proxy_addr} HTTP_PROXY=${proxy_a
 
 # 快速登录
 F2TM_tmux_command="tmux new-session -s `whoami` || tmux attach-session -t `whoami`"
-alias mars="$F2TM_tmux_command"
+F2TM_tmux_plugin_path="$HOME/.tmux/plugins"
+if [ $F2TM_tmux_exist ];then
+    alias mars="$F2TM_tmux_command"
+fi
+if [ ! -d $F2TM_tmux_plugin_path/tpm ];then
+    https_proxy=$proxy_addr git clone https://github.com/tmux-plugins/tpm $F2TM_tmux_plugin_path/tpm
+fi
 alias fsshme="ssh hoh0@192.168.2.106 -t \"$F2TM_tmux_command\""
 alias fsshlth="ssh lth@192.168.2.20"
 alias fssh105="ssh root@192.168.2.105 -t \"$F2TM_tmux_command\""
@@ -66,10 +72,10 @@ alias fsshfireflydesktop="ssh root@192.168.2.151 -t \"$F2TM_tmux_command\""
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if [ ! -d $PYENV_ROOT ]; then
-	https_proxy=$proxy_addr git clone https://github.com/yyuu/pyenv.git $PYENV_ROOT
+    https_proxy=$proxy_addr git clone https://github.com/yyuu/pyenv.git $PYENV_ROOT
 fi
 if [ ! -d $PYENV_ROOT/plugins/pyenv-virtualenv ]; then
-	https_proxy=$proxy_addr git clone https://github.com/yyuu/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyenv-virtualenv
+    https_proxy=$proxy_addr git clone https://github.com/yyuu/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyenv-virtualenv
 fi
 eval "$(pyenv init - zsh)"
 eval "$(pyenv virtualenv-init - zsh)"
