@@ -11,7 +11,6 @@ fi
 file="
     $HOME/.gitconfig
     $HOME/.pip
-    $HOME/.pyenv
     $HOME/.tmux
     $HOME/.tmux.conf
     $HOME/.vim
@@ -28,9 +27,6 @@ done
 
 ln -sf $f2tm_dir/git/gitconfig $HOME/.gitconfig
 ln -sf $f2tm_dir/python/pip $HOME/.pip
-ln -sf $f2tm_dir/python/pyenv $HOME/.pyenv
-ln -sf $f2tm_dir/python/pyenv-implict $HOME/.pyenv/plugins
-ln -sf $f2tm_dir/python/pyenv-virtualenv $HOME/.pyenv/plugins
 ln -sf $f2tm_dir/tmux/tmux.conf $HOME/.tmux.conf
 ln -sf $f2tm_dir/tmux/tmux $HOME/.tmux
 ln -sf $f2tm_dir/vim/vimrc $HOME/.vimrc
