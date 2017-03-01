@@ -118,12 +118,11 @@ if [ $rsync_exist ]; then
     alias cp="cpv"
 fi
 
-# 彩色ls
+# 常用配置，移植自oh-my-zsh
 base_ls='ls -h --color=auto --ignore="*\.pyc" --ignore="*\.pyo"'
 alias ll="$base_ls -l"
 alias la="$base_ls -al"
 
-# 目录相关
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
@@ -140,7 +139,18 @@ alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
 
-# 不同的OS不同的配置
+alias -g G='| grep'
+alias -g L="| less"
+alias -g NUL="> /dev/null 2>&1"
+alias dud='du -d 1 -h'
+alias duf='du -sh *'
+alias fd='find . -type d -name'
+alias ff='find . -type f -name'
+alias h='history'
+# Make zsh know about hosts already accessed by SSH
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+
+# Mac中增加coreutils的路径
 if [[ $OSTYPE == darwin* ]]; then
     if [ -d /usr/local/opt/coreutils ]; then
         export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
@@ -174,6 +184,7 @@ zplug "lib/key-bindings", from:oh-my-zsh
 zplug "lib/termsupport", from:oh-my-zsh
 zplug "lib/theme-and-appearance", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh
+zplug "plugins/Globalias", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/extract", from:oh-my-zsh
 zplug "plugins/z", from:oh-my-zsh
