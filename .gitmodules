@@ -1,24 +1,6 @@
 [submodule "aria2/webui-aria2"]
 	path = aria2/webui-aria2
 	url = https://github.com/ziahamza/webui-aria2.git
-[submodule "python/pyenv"]
-	path = python/pyenv
-	url = https://github.com/yyuu/pyenv.git
-[submodule "python/pyenv-implict"]
-	path = python/pyenv-implict
-	url = https://github.com/concordusapps/pyenv-implict.git
-[submodule "python/pyenv-virtualenv"]
-	path = python/pyenv-virtualenv
-	url = https://github.com/yyuu/pyenv-virtualenv.git
-[submodule "zsh/oh-my-zsh"]
-	path = zsh/oh-my-zsh
-	url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule "zsh/zsh-autosuggestions"]
-	path = zsh/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions.git
-[submodule "zsh/zsh-syntax-highlighting"]
-	path = zsh/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "tmux/tmux/tpm"]
 	path = tmux/tmux/tpm
 	url = https://github.com/tmux-plugins/tpm

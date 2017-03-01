@@ -5,11 +5,22 @@
 stty -ixon
 # 终端使用emacs的按键
 bindkey -e
+
 # 自定义的环境变量
 export F2TM_project_path="$HOME/Fly2TheMoon"
 # 系统级环境变量
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+# 命令检查
+which git > /dev/null 2>&1
+F2TM_git_exist=$?
+which tmux > /dev/null 2>&1
+F2TM_tmux_exist=$?
+which docker > /dev/null 2>&1
+F2TM_docke_exist=$?
+which rsync > /dev/null 2>&1
+F2TM_rsync_exist=$?
 
 
 
@@ -51,8 +62,20 @@ alias fsshmaster="ssh root@192.168.2.154 -t \"$F2TM_tmux_command\""
 alias fsshfirefly="ssh root@192.168.2.150 -t \"$F2TM_tmux_command\""
 alias fsshfireflydesktop="ssh root@192.168.2.151 -t \"$F2TM_tmux_command\""
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if [ ! -d $PYENV_ROOT ]; then
+	https_proxy=$proxy_addr git clone https://github.com/yyuu/pyenv.git $PYENV_ROOT
+fi
+if [ ! -d $PYENV_ROOT/plugins/pyenv-virtualenv ]; then
+	https_proxy=$proxy_addr git clone https://github.com/yyuu/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyenv-virtualenv
+fi
+eval "$(pyenv init - zsh)"
+eval "$(pyenv virtualenv-init - zsh)"
+
 # docker
-if which docker > /dev/null 2>&1; then
+if [ $F2TM_docke_exist ]; then
     alias dps='docker ps --format '\''table {{.Names}}\t{{.ID}}\t{{.Status}}\t{{.Image}}'\'''
     alias dim="docker images"
     alias drm="docker rm"
@@ -87,20 +110,20 @@ if which vboxmanage > /dev/null 2>&1; then
 fi
 
 #可视化cp命令
-if which rsync > /dev/null 2>&1; then
+if [ $F2TM_rsync_exist ]; then
     alias cp="cpv"
 fi
 
+# 彩色ls
+base_ls='ls -h --color=auto --ignore="*\.pyc" --ignore="*\.pyo"'
+alias ll="$base_ls -l"
+alias la="$base_ls -al"
+
 # 不同的OS不同的配置
-if [ `uname -s` = "Linux" ]; then
-    alias ls='ls -l -h --color=auto --ignore="*\.pyc" --ignore="*\.pyo"'
-    alias ll='ls -l -h --ignore="*\.pyc" --ignore="*\.pyo"'
-elif [ `uname -s` = "Darwin" ]; then
+if [[ $OSTYPE == darwin* ]]; then
     if [ -d /usr/local/opt/coreutils ]; then
         export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
         export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-        alias ls='ls -F -l -h --color=auto --ignore="*\.pyc" --ignore="*\.pyo"'
-        alias ll='ls -F -l -h --color=auto --ignore="*\.pyc" --ignore="*\.pyo"'
     fi
 fi
 
@@ -109,47 +132,50 @@ fi
 # ---------
 # | 3. 插件
 # ---------
-export ZPLUG_HOME="$F2TM_project_path/zsh/zplug"
+export ZPLUG_HOME="$HOME/.zplug"
+if [[ ! -d $ZPLUG_HOME ]]; then
+    https_proxy=$proxy_addr git clone https://github.com/zplug/zplug $ZPLUG_HOME
+fi
 source $ZPLUG_HOME/init.zsh
 
 # zsh-users
+zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-history-substring-search", defer:3
 bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
 # oh-my-zsh，通用
-zplug "plugins/z", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/extract", from:oh-my-zsh
+zplug "plugins/z", from:oh-my-zsh
 # oh-my-zsh，命令相关
 zplug "plugins/cp", from:oh-my-zsh, if:"which rsync > /dev/null 2>&1"
-zplug "plugins/tmux", from:oh-my-zsh, if:"which tmux > /dev/null 2>&1"
-zplug "plugins/gitfast", from:oh-my-zsh, if:"which git > /dev/null 2>&1"
-zplug "plugins/git-extras", from:oh-my-zsh, if:"which git > /dev/null 2>&1"
-zplug "plugins/docker", from:oh-my-zsh, if:"which docker > /dev/null 2>&1"
+zplug "plugins/tmux", from:oh-my-zsh, if:"[ $F2TM_tmux_exist ]"
+zplug "plugins/gitfast", from:oh-my-zsh, if:"[ $F2TM_git_exist ]"
+zplug "plugins/git-extras", from:oh-my-zsh, if:"[ $F2TM_git_exist ]"
+zplug "plugins/gitignore", from:oh-my-zsh, if:"[ $F2TM_git_exist ]"
+zplug "plugins/docker", from:oh-my-zsh, if:"[ $F2TM_docke_exist ]"
 zplug "plugins/docker-compose", from:oh-my-zsh, if:"which docker-compose > /dev/null 2>&1"
 zplug "plugins/python", from:oh-my-zsh, if:"which python > /dev/null 2>&1"
-zplug "plugins/pyenv", from:oh-my-zsh, if:"which pyenv > /dev/null 2>&1"
 zplug "plugins/httpie", from:oh-my-zsh, if:"which http > /dev/null 2>&1"
 # oh-my-zsh，平台相关
-zplug "plugins/osx", from:oh-my-zsh, if:"[ `uname -s` = "Darwin" ]"
-zplug "plugins/brew", from:oh-my-zsh, if:"[ `uname -s` = "Darwin" ] && which brew > /dev/null 2>&1"
-zplug "plugins/dnf", from:oh-my-zsh, if:"[ `uname -s` = "Linux" ] && which dnf > /dev/null 2>&1"
-zplug "plugins/systemd", from:oh-my-zsh, if:"[ `uname -s` = "Linux" ] && which systemctl > /dev/null 2>&1"
+zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == darwin* ]]"
+zplug "plugins/brew", from:oh-my-zsh, if:"[[ $OSTYPE == darwin* ]] && which brew > /dev/null 2>&1"
+zplug "plugins/dnf", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which dnf > /dev/null 2>&1"
+zplug "plugins/systemd", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which systemctl > /dev/null 2>&1"
 # oh-my-zsh，主题
+zplug "lib/theme-and-appearance", from:oh-my-zsh
 zplug "themes/afowler", from:oh-my-zsh, as:theme
+# zplug
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 # Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
+if ! zplug check; then
     printf "Install? [y/N]: "
     if read -q; then
-		export http_proxy=$proxy_addr
-		export https_proxy=$proxy_addr
-        echo; zplug install
-		unset http_proxy
-		unset https_proxy
+        echo; https_proxy=$proxy_addr zplug install
     fi
 fi
 # Then, source plugins and add commands to $PATH
