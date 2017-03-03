@@ -51,12 +51,13 @@ alias h="http_proxy=${proxy_addr} https_proxy=${proxy_addr} HTTP_PROXY=${proxy_a
 
 # 快速登录
 tmux_command="tmux new-session -s `whoami` || tmux attach-session -t `whoami`"
-tmux_plugin_path="$HOME/.tmux/plugins"
+tmux_tpm_path="$HOME/.tmux/plugins/tpm"
 if [ $tmux_exist ];then
     alias mars="$tmux_command"
 fi
-if [ ! -d $tmux_plugin_path/tpm ];then
-    https_proxy=$proxy_addr git clone https://github.com/tmux-plugins/tpm $tmux_plugin_path/tpm
+if [ ! -d $tmux_tpm_path ];then
+    mkdir -p $tmux_tpm_path
+    https_proxy=$proxy_addr git clone https://github.com/tmux-plugins/tpm $tmux_tpm_path
 fi
 alias fsshme="ssh hoh0@192.168.2.106 -t \"$tmux_command\""
 alias fsshlth="ssh lth@192.168.2.20"
@@ -183,7 +184,6 @@ zplug "lib/key-bindings", from:oh-my-zsh
 zplug "lib/termsupport", from:oh-my-zsh
 zplug "lib/theme-and-appearance", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh
-zplug "plugins/Globalias", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/extract", from:oh-my-zsh
 zplug "plugins/z", from:oh-my-zsh
