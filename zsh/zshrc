@@ -17,6 +17,10 @@ which tmux > /dev/null 2>&1
 tmux_exist=$?
 which docker > /dev/null 2>&1
 docker_exist=$?
+which docker-compose > /dev/null 2>&1
+docker_compose_exist=$?
+which docker-machine > /dev/null 2>&1
+docker_machine_exist=$?
 which rsync > /dev/null 2>&1
 rsync_exist=$?
 
@@ -81,10 +85,17 @@ eval "$(pyenv virtualenv-init - zsh)"
 
 # docker
 if [ $docker_exist ]; then
-    alias dps='docker ps --format '\''table {{.Names}}\t{{.ID}}\t{{.Status}}\t{{.Image}}'\'''
+    alias d="docker"
+    alias dps="docker ps --format \"table {{.Names}}\t{{.Image}}\t{{.ID}}\t{{.Status}}\""
     alias dim="docker images"
     alias drm="docker rm"
     alias drmi="docker rmi"
+fi
+if [ $docker_machine_exist ]; then
+    alias dm="docker-machine"
+fi
+if [ $docker_compose_exist ]; then
+    alias dco="docker-compose"
 fi
 
 # gr, 多repo的git管理工具
@@ -170,50 +181,49 @@ fi
 source $ZPLUG_HOME/init.zsh
 
 # zsh-users
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-history-substring-search", defer:3
+zplug "zsh-users/zsh-completions", depth:1
+zplug "zsh-users/zsh-autosuggestions", depth:1
+zplug "zsh-users/zsh-syntax-highlighting", defer:2, depth:1
+zplug "zsh-users/zsh-history-substring-search", defer:3, depth:1
 bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
+# 官方补全
+zplug "docker/docker", use:contrib/completion/zsh, if:"[ $docker_exist ]", depth:1
+zplug "docker/compose", use:contrib/completion/zsh, if:"[ $docker_compose_exist ]", depth:1
+zplug "docker/machine", use:contrib/completion/zsh, if:"[ $docker_machine_exist ]", depth:1
 # oh-my-zsh，通用
-zplug "lib/completion", from:oh-my-zsh
-zplug "lib/grep", from:oh-my-zsh
-zplug "lib/history", from:oh-my-zsh
-zplug "lib/key-bindings", from:oh-my-zsh
-zplug "lib/termsupport", from:oh-my-zsh
-zplug "lib/theme-and-appearance", from:oh-my-zsh
-zplug "plugins/sudo", from:oh-my-zsh
-zplug "plugins/colored-man-pages", from:oh-my-zsh
-zplug "plugins/extract", from:oh-my-zsh
-zplug "plugins/z", from:oh-my-zsh
+zplug "lib/completion", from:oh-my-zsh, depth:1
+zplug "lib/grep", from:oh-my-zsh, depth:1
+zplug "lib/history", from:oh-my-zsh, depth:1
+zplug "lib/key-bindings", from:oh-my-zsh, depth:1
+zplug "lib/termsupport", from:oh-my-zsh, depth:1
+zplug "lib/theme-and-appearance", from:oh-my-zsh, depth:1
+zplug "plugins/sudo", from:oh-my-zsh, depth:1
+zplug "plugins/colored-man-pages", from:oh-my-zsh, depth:1
+zplug "plugins/extract", from:oh-my-zsh, depth:1
+zplug "plugins/z", from:oh-my-zsh, depth:1
 # oh-my-zsh，命令相关
-zplug "plugins/cp", from:oh-my-zsh, if:"which rsync > /dev/null 2>&1"
-zplug "plugins/tmux", from:oh-my-zsh, if:"[ $tmux_exist ]"
-zplug "plugins/gitfast", from:oh-my-zsh, if:"[ $git_exist ]"
-zplug "plugins/git-extras", from:oh-my-zsh, if:"[ $git_exist ]"
-zplug "plugins/gitignore", from:oh-my-zsh, if:"[ $git_exist ]"
-zplug "plugins/docker", from:oh-my-zsh, if:"[ $docker_exist ]"
-zplug "plugins/docker-compose", from:oh-my-zsh, if:"which docker-compose > /dev/null 2>&1"
-zplug "plugins/python", from:oh-my-zsh, if:"which python > /dev/null 2>&1"
-zplug "plugins/httpie", from:oh-my-zsh, if:"which http > /dev/null 2>&1"
+zplug "plugins/cp", from:oh-my-zsh, if:"which rsync > /dev/null 2>&1", depth:1
+zplug "plugins/tmux", from:oh-my-zsh, if:"[ $tmux_exist ]", depth:1
+zplug "plugins/gitfast", from:oh-my-zsh, if:"[ $git_exist ]", depth:1
+zplug "plugins/git-extras", from:oh-my-zsh, if:"[ $git_exist ]", depth:1
+zplug "plugins/gitignore", from:oh-my-zsh, if:"[ $git_exist ]", depth:1
+zplug "plugins/python", from:oh-my-zsh, if:"which python > /dev/null 2>&1", depth:1
+zplug "plugins/httpie", from:oh-my-zsh, if:"which http > /dev/null 2>&1", depth:1
 # oh-my-zsh，平台相关
-zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == darwin* ]]"
-zplug "plugins/brew", from:oh-my-zsh, if:"[[ $OSTYPE == darwin* ]] && which brew > /dev/null 2>&1"
-zplug "plugins/dnf", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which dnf > /dev/null 2>&1"
-zplug "plugins/systemd", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which systemctl > /dev/null 2>&1"
-zplug "plugins/archlinux", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which pacman > /dev/null 2>&1"
+zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == darwin* ]]", depth:1
+zplug "plugins/brew", from:oh-my-zsh, if:"[[ $OSTYPE == darwin* ]] && which brew > /dev/null 2>&1", depth:1
+zplug "plugins/dnf", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which dnf > /dev/null 2>&1", depth:1
+zplug "plugins/systemd", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which systemctl > /dev/null 2>&1", depth:1
+zplug "plugins/archlinux", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which pacman > /dev/null 2>&1", depth:1
 # oh-my-zsh，主题
-zplug "themes/afowler", from:oh-my-zsh, as:theme
+zplug "themes/afowler", from:oh-my-zsh, as:theme, depth:1
 # zplug
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug 'zplug/zplug', hook-build:'zplug --self-manage', depth:1
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; https_proxy=$proxy_addr zplug install
-    fi
+    https_proxy=$proxy_addr zplug install
 fi
 # Then, source plugins and add commands to $PATH
 zplug load
