@@ -121,7 +121,7 @@ if which ccat > /dev/null 2>&1; then
 fi
 
 # VirtualBox
-if which vboxmanage > /dev/null 2>&1; then
+if which VBoxManage > /dev/null 2>&1; then
     alias vb="VBoxManage"
 fi
 
