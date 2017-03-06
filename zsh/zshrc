@@ -17,8 +17,6 @@ which tmux > /dev/null 2>&1
 tmux_exist=$?
 which docker > /dev/null 2>&1
 docker_exist=$?
-which rsync > /dev/null 2>&1
-rsync_exist=$?
 
 
 
@@ -114,10 +112,6 @@ if which vboxmanage > /dev/null 2>&1; then
     alias vb="vboxmanage"
 fi
 
-#可视化cp命令
-if [ $rsync_exist ]; then
-    alias cp="cpv"
-fi
 
 # 常用配置，移植自oh-my-zsh
 base_ls='ls -h --color=auto --ignore="*\.pyc" --ignore="*\.pyo"'
