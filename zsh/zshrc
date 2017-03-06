@@ -122,7 +122,7 @@ fi
 
 # VirtualBox
 if which vboxmanage > /dev/null 2>&1; then
-    alias vb="vboxmanage"
+    alias vb="VBoxManage"
 fi
 
 
