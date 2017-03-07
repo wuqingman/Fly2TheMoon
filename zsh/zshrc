@@ -168,6 +168,7 @@ fi
 # | 3. 插件
 # ---------
 export ZPLUG_HOME="$HOME/.zplug"
+export ZPLUG_CACHE_DIR="$ZPLUG_HOME/cache_`whoami`"
 if [[ ! -d $ZPLUG_HOME ]]; then
     https_proxy=$proxy_addr git clone https://github.com/zplug/zplug $ZPLUG_HOME
 fi
@@ -213,7 +214,7 @@ zplug "plugins/dnf", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which dnf
 zplug "plugins/systemd", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which systemctl > /dev/null 2>&1", depth:1
 zplug "plugins/archlinux", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which pacman > /dev/null 2>&1", depth:1
 # oh-my-zsh，主题
-zplug "themes/afowler", from:oh-my-zsh, as:theme, depth:1
+zplug "themes/clean", from:oh-my-zsh, as:theme, depth:1
 # zplug
 zplug 'zplug/zplug', hook-build:'zplug --self-manage', depth:1
 
