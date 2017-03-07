@@ -67,9 +67,6 @@ alias fsshme="ssh hoh0@192.168.2.106 -t \"$tmux_command\""
 alias fsshlth="ssh lth@192.168.2.20"
 alias fssh105="ssh root@192.168.2.105 -t \"$tmux_command\""
 alias fssh146="ssh root@202.107.247.146 -p 28489 -t \"$tmux_command\""
-alias fsshmaster="ssh root@192.168.2.154 -t \"$tmux_command\""
-alias fsshfirefly="ssh root@192.168.2.150 -t \"$tmux_command\""
-alias fsshfireflydesktop="ssh root@192.168.2.151 -t \"$tmux_command\""
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
