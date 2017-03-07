@@ -61,7 +61,8 @@ if [ $tmux_exist ];then
 fi
 if [ ! -d $tmux_tpm_path ];then
     mkdir -p $tmux_tpm_path
-    https_proxy=$proxy_addr git clone https://github.com/tmux-plugins/tpm $tmux_tpm_path
+    https_proxy=$proxy_addr \
+        git clone https://github.com/tmux-plugins/tpm $tmux_tpm_path --depth 1
 fi
 alias fsshme="ssh hoh0@192.168.2.106 -t \"$tmux_command\""
 alias fsshlth="ssh lth@192.168.2.20"
@@ -72,10 +73,12 @@ alias fssh146="ssh root@202.107.247.146 -p 28489 -t \"$tmux_command\""
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if [ ! -d $PYENV_ROOT ]; then
-    https_proxy=$proxy_addr git clone https://github.com/yyuu/pyenv.git $PYENV_ROOT
+    https_proxy=$proxy_addr \
+        git clone https://github.com/yyuu/pyenv.git $PYENV_ROOT --depth 1
 fi
 if [ ! -d $PYENV_ROOT/plugins/pyenv-virtualenv ]; then
-    https_proxy=$proxy_addr git clone https://github.com/yyuu/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyenv-virtualenv
+    https_proxy=$proxy_addr \
+        git clone https://github.com/yyuu/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyenv-virtualenv --depth 1
 fi
 eval "$(pyenv init - zsh)"
 eval "$(pyenv virtualenv-init - zsh)"
@@ -128,10 +131,10 @@ base_ls='ls -h --color=auto --ignore="*\.pyc" --ignore="*\.pyo"'
 alias ll="$base_ls -l"
 alias la="$base_ls -al"
 
-# alias -g ...='../..'
-# alias -g ....='../../..'
-# alias -g .....='../../../..'
-# alias -g ......='../../../../..'
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
 
 alias -- -='cd -'
 alias 1='cd -'
@@ -151,8 +154,6 @@ alias dud='du -d 1 -h'
 alias duf='du -sh *'
 alias fd='find . -type d -name'
 alias ff='find . -type f -name'
-# Make zsh know about hosts already accessed by SSH
-zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 # Mac中增加coreutils的路径
 if [[ $OSTYPE == darwin* ]]; then
@@ -170,7 +171,8 @@ fi
 export ZPLUG_HOME="$HOME/.zplug"
 export ZPLUG_CACHE_DIR="$ZPLUG_HOME/cache_`whoami`"
 if [[ ! -d $ZPLUG_HOME ]]; then
-    https_proxy=$proxy_addr git clone https://github.com/zplug/zplug $ZPLUG_HOME
+    https_proxy=$proxy_addr \
+        git clone https://github.com/zplug/zplug $ZPLUG_HOME --depth 1
 fi
 source $ZPLUG_HOME/init.zsh
 
