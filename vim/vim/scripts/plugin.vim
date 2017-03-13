@@ -42,7 +42,7 @@ call plug#begin()
 
 " drawit {
 "   画图
-    Plug 'DrawIt', {'for': ['text']}
+    Plug 'DrawIt', {'for': ['text', 'markdown']}
 " }
 
 
