@@ -166,6 +166,8 @@ call plug#begin()
 
     let g:ycm_key_list_select_completion = ['<c-n>']
     let g:ycm_key_list_previous_completion = ['<c-p>']
+    " Python路径
+    let g:ycm_python_binary_path = 'python'
     " 在注释输入中也能补全
     let g:ycm_complete_in_comments = 1
     " 在字符串输入中也能补全
