@@ -1,3 +1,8 @@
+let g:plug_timeout = 30
+let g:plug_retries = 3
+let g:plug_threads = 32
+let g:plug_shallow = 1
+
 call plug#begin()
 
 
@@ -10,7 +15,8 @@ call plug#begin()
     Plug 'hdima/python-syntax', {'for': ['python']}
     Plug 'hynek/vim-python-pep8-indent', {'for': ['python']}
     Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['python']}
-    " NOTICE: pip install isort
+    " NOTICE
+    " 安装isort: pacman -Syu python2-isort
     Plug 'fisadev/vim-isort', {'for': ['python']}
 
     let g:vim_isort_map = '<C-i>'
@@ -204,7 +210,7 @@ call plug#begin()
 "   会话管理
     Plug 'xolox/vim-session' | Plug 'xolox/vim-misc'
 
-    let g:session_autosave = 'yes'
+    let g:session_autosave = 'no'
     let g:session_autoload = 'no'
     nnoremap <Leader>fz :OpenSession<Space>
     nnoremap <Leader>fx :SaveSession<Space>
