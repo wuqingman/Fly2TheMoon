@@ -88,16 +88,43 @@ nnoremap <Leader>2 2gt
 nnoremap <Leader>3 3gt
 nnoremap <Leader>4 4gt
 nnoremap <Leader>5 5gt
-nnoremap <Leader>9 :tabnew<Space>$HOME/.vim/scripts/plugin.vim<CR>:vsp<Space>$HOME/.vim/scripts/setting.vim<CR>
-nnoremap <Leader>0 :tab<Space>h<CR>
+" <Leader>9新标签打开配置文件
+" <Leader>0新标签打开帮助信息
+" 判断标签是否为空
+function! <SID>TabIsEmpty()
+    return winnr('$') == 1 && len(expand('%')) == 0 && line2byte(line('$') + 1) <= 2
+endfunction
+" 打开配置文件
+function! <SID>OpenVimSettings()
+    if <SID>TabIsEmpty()
+        execute "edit $HOME/.vim/scripts/plugin.vim | vsp $HOME/.vim/scripts/setting.vim | tabmove"
+    else
+        execute "tabe $HOME/.vim/scripts/plugin.vim | vsp $HOME/.vim/scripts/setting.vim | tabmove"
+    endif
+    if exists(":TabooRename")
+        execute "TabooRename settings"
+    endif
+endfunction
+" 打开帮助信息
+function! <SID>OpenVimHelp()
+    if <SID>TabIsEmpty()
+        execute "help | only | tabmove"
+    else
+        execute "tab help | tabmove"
+    endif
+    if exists(":TabooRename")
+        execute "TabooRename help info"
+    endif
+endfunction
+nnoremap <Leader>9 :call <SID>OpenVimSettings()<CR>
+nnoremap <Leader>0 :call <SID>OpenVimHelp()<CR>
 
 " 快速关闭
 function! <SID>CloseTabOrCloseVim()
-    let page_num_in_vim = tabpagenr("$")
-    if page_num_in_vim == 1
-        :qa
+    if tabpagenr("$") == 1
+        execute "qa"
     else
-        :tabc
+        execute "tabc"
     endif
 endfunction
 nnoremap <Leader>q :call <SID>CloseTabOrCloseVim()<CR>
@@ -140,7 +167,7 @@ set history=10000
 " 文件修改之后自动载入。
 set autoread
 " 启动的时候不显示那个援助索马里儿童的提示
-set shortmess=I
+set shortmess=IO
 " 命令行补全忽略部分文件
 set wildignore=*.swp,*.bak,*.py[o,c],*.class,.svn,*.o,*~,.git
 " 命令行补全模式

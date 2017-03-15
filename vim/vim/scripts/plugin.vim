@@ -325,6 +325,13 @@ call plug#begin()
 "   标签重命名
     Plug 'gcmt/taboo.vim'
 
+
+    " 重命名前的标签格式
+    let g:taboo_tab_format=" %N %f%m "
+    " 重命名后的标签格式
+    let g:taboo_renamed_tab_format=" %N.[%l%m] "
+    " gui的标签跟terminal一致
+    set guioptions-=e
     " 保存回话的时候保存标签名
     set sessionoptions+=tabpages,globals
     nnoremap <Leader>ft :TabooRename<space>
