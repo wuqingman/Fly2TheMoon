@@ -1,6 +1,6 @@
 .DS_Store
 
-vim/vim/sessions
+vim/vim/cache
 vim/vim/plugged
 
 tmux/tmux/resurrect

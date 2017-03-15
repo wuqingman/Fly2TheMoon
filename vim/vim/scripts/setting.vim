@@ -198,6 +198,8 @@ set incsearch
 set ignorecase
 " 有一个或以上大写字母时仍大小写敏感
 set smartcase
+" 搜索到文件尾后禁止跳转到开头
+set nowrapscan
 " 关闭代码折叠
 set nofoldenable
 " 如果启用代码折叠功能，则按照缩进折叠
@@ -248,5 +250,5 @@ set showtabline=2
 set splitright
 set splitbelow
 " 增加undo文件
-set undodir=~/.vim/sessions
+set undodir=~/.vim/cache/undo
 set undofile

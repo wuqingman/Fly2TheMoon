@@ -210,11 +210,14 @@ call plug#begin()
 "   会话管理
     Plug 'xolox/vim-session' | Plug 'xolox/vim-misc'
 
-    let g:session_autosave = 'no'
-    let g:session_autoload = 'no'
-    nnoremap <Leader>fz :OpenSession<Space>
-    nnoremap <Leader>fx :SaveSession<Space>
-    nnoremap <Leader>fc :CloseSession<CR>
+    let g:session_directory = "~/.vim/cache/session"
+    let g:session_autosave = 'yes'
+    let g:session_autoload = 'yes'
+    let g:session_default_to_last = 1
+    let g:session_command_aliases = 1
+    nnoremap <Leader>fz :SessionOpen<Space>
+    nnoremap <Leader>fx :SessionSave<Space>
+    nnoremap <Leader>fc :SessionClose<CR>
 " }
 
 
