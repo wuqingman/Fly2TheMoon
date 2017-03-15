@@ -287,7 +287,7 @@ call plug#begin()
     if executable('ag')
         let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
     endif
-    nnoremap <Leader>fd :CtrlP<SPACE>
+    nnoremap <Leader>fd :CtrlP<CR>
     nnoremap <Leader>ff :CtrlPMRU<CR>
     nnoremap <Leader>fb :CtrlPBuffer<CR>
 
