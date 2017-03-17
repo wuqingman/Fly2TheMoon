@@ -148,7 +148,7 @@ alias 8='cd -8'
 alias 9='cd -9'
 
 alias -g G='| grep'
-alias -g L='| less'
+alias -g L='| less -S'
 alias -g J='| jq'
 alias -g NUL='> /dev/null 2>&1'
 alias dud='du -d 1 -h'
