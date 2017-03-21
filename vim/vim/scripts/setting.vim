@@ -13,6 +13,11 @@ autocmd! InsertLeave * :set nopaste
 autocmd! InsertLeave * if pumvisible() == 0|pclose|endif
 " 打开文件时光标自动定位到上次的位置
 autocmd! BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" 行号与相对行号
+autocmd! FocusLost * :set norelativenumber number
+autocmd! FocusGained * :set relativenumber
+autocmd! InsertEnter * :set norelativenumber number
+autocmd! InsertLeave * :set relativenumber
 " 在gitcommit中竖线72个字符，符合git commit的规范
 " 不再定位到上次的位置，每次都从文件头开始编辑
 function! <SID>GitCommitEditMsg()
@@ -70,7 +75,6 @@ vnoremap J ^
 nnoremap K $
 vnoremap K $
 
-
 " 命令行模式增强, <C-a>行首, <C-e>行尾
 cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
@@ -88,6 +92,7 @@ nnoremap <Leader>2 2gt
 nnoremap <Leader>3 3gt
 nnoremap <Leader>4 4gt
 nnoremap <Leader>5 5gt
+
 " <Leader>9新标签打开配置文件
 " <Leader>0新标签打开帮助信息
 " 判断标签是否为空
@@ -149,6 +154,29 @@ noremap <Leader>fq :nohls<CR>
 " 设置粘贴模式
 noremap <Leader>fw :set paste<ESC>i
 
+" F3 开启/关闭行号
+function! HideNumber()
+    if(&relativenumber == &number)
+        set relativenumber! number!
+    elseif(&number)
+        set number!
+    else
+        set relativenumber!
+    endif
+    set number?
+endfunc
+nnoremap <F3> :call HideNumber()<CR>
+" F4 快速切换相对行号
+function! NumberToggle()
+    if(&relativenumber == 1)
+        set norelativenumber number
+    else
+        set relativenumber
+    endif
+endfunc
+nnoremap <F4> :call NumberToggle()<cr>
+
+
 
 " 配色
 colorscheme PaperColor
@@ -162,6 +190,10 @@ set colorcolumn=120
 
 " 不使用vi兼容模式
 set nocompatible
+" 显示行号
+set number
+" 显示相对行号
+set relativenumber
 " history存储容量
 set history=10000
 " 文件修改之后自动载入。
@@ -199,7 +231,7 @@ set ignorecase
 " 有一个或以上大写字母时仍大小写敏感
 set smartcase
 " 搜索到文件尾后禁止跳转到开头
-set nowrapscan
+set wrapscan
 " 关闭代码折叠
 set nofoldenable
 " 如果启用代码折叠功能，则按照缩进折叠
@@ -226,8 +258,6 @@ set smarttab
 set expandtab
 " 缩进取整
 set shiftround
-" 设置行号
-set number
 " 设置新文件的编码为 UTF-8
 set encoding=utf-8
 " 自动判断编码时，依次尝试以下编码：
