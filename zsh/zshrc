@@ -186,13 +186,16 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2, depth:1
 zplug "zsh-users/zsh-history-substring-search", defer:3, depth:1
 bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
-# 官方补全
-zplug "docker/docker", use:contrib/completion/zsh, if:"[ $docker_exist ]", depth:1
-zplug "docker/compose", use:contrib/completion/zsh, if:"[ $docker_compose_exist ]", depth:1
-zplug "docker/machine", use:contrib/completion/zsh, if:"[ $docker_machine_exist ]", depth:1
-# b4b4r07
-# zplug "b4b4r07/enhancd", use:init.sh, depth:1
-export ENHANCD_DOT_SHOW_FULLPATH=1
+# 官方补全，只在系统中存在这些命令的时候才去下载、载入
+if [ $docker_exist ]; then
+    zplug "docker/docker", use:contrib/completion/zsh, depth:1
+fi
+if [ $docker_compose_exist ]; then
+    zplug "docker/compose", use:contrib/completion/zsh, depth:1
+fi
+if [ $docker_machine_exist ]; then
+    zplug "docker/machine", use:contrib/completion/zsh, depth:1
+fi
 # oh-my-zsh，通用
 zplug "lib/completion", from:oh-my-zsh, depth:1
 zplug "lib/grep", from:oh-my-zsh, depth:1
@@ -215,9 +218,7 @@ zplug "plugins/httpie", from:oh-my-zsh, if:"which http > /dev/null 2>&1", depth:
 # oh-my-zsh，平台相关
 zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == darwin* ]]", depth:1
 zplug "plugins/brew", from:oh-my-zsh, if:"[[ $OSTYPE == darwin* ]] && which brew > /dev/null 2>&1", depth:1
-zplug "plugins/dnf", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which dnf > /dev/null 2>&1", depth:1
 zplug "plugins/systemd", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which systemctl > /dev/null 2>&1", depth:1
-zplug "plugins/archlinux", from:oh-my-zsh, if:"[[ $OSTYPE == linux-gnu ]] && which pacman > /dev/null 2>&1", depth:1
 # oh-my-zsh，主题
 zplug "themes/clean", from:oh-my-zsh, as:theme, depth:1
 # zplug
