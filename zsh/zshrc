@@ -64,7 +64,7 @@ if [ ! -d $tmux_tpm_path ];then
     https_proxy=$proxy_addr \
         git clone https://github.com/tmux-plugins/tpm $tmux_tpm_path --depth 1
 fi
-alias fsshme="ssh hoh0@192.168.2.106 -t \"tmuxinator start YiHe\""
+alias fsshme="ssh root@192.168.2.106 -t \"$tmux_command\""
 alias fsshlth="ssh lth@192.168.2.20"
 alias fssh105="ssh root@192.168.2.105 -t \"$tmux_command\""
 alias fssh146="ssh root@202.107.247.146 -p 28489 -t \"$tmux_command\""
