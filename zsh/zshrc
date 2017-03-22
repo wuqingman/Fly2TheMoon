@@ -125,6 +125,13 @@ if which VBoxManage > /dev/null 2>&1; then
     alias vb="VBoxManage"
 fi
 
+# pacman
+if which pacman > /dev/null 2>&1; then
+    alias p="pacman"
+    alias paci="pacman -Syu --noconfirm"
+fi
+
+
 
 # 常用配置，移植自oh-my-zsh
 base_ls='ls -h --color=auto --ignore="*\.pyc" --ignore="*\.pyo"'
