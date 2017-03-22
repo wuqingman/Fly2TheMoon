@@ -238,7 +238,7 @@ call plug#begin()
 
 " ultisnips {
 "   代码补全
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets', {'for': ['python']}
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets', {'for': ['python', 'vim']}
 
     let g:UltiSnipsExpandTrigger = "<tab>"
     let g:UltiSnipsJumpForwardTrigger = "<tab>"
