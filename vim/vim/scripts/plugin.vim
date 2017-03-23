@@ -233,7 +233,7 @@ call plug#begin()
 
     nmap <silent> <Leader>n <Plug>(ale_next_wrap)
     nmap <silent> <Leader>p <Plug>(ale_previous_wrap)
-"
+" }
 
 
 " ultisnips {
