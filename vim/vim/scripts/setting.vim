@@ -148,6 +148,7 @@ endfunction
     " 自动判断编码时，依次尝试以下编码：
     set fileencodings=utf-8,cp936
     " 优先使用unix格式
+    set fileformat=unix
     set fileformats=unix,mac,dos
 
     " 文件修改之后自动载入。
@@ -161,6 +162,7 @@ endfunction
     " 使用undo文件来保存编辑历史，在重新打开文件后也可以撤销之前的修改
     set undodir=~/.vim/cache/undo
     set undofile
+    set viminfo+=!
 
     " history存储容量
     set history=10000
@@ -168,12 +170,25 @@ endfunction
 
 " 1.6 命令行
 " {
-    " 命令行补全模式
+    " 命令行补全
     set wildmenu
+    set wildmode=longest,full
+    set completeopt=menu,menuone,longest,preview
+    set switchbuf=useopen,usetab
+
     " 命令行补全忽略部分文件
-    set wildignore=*.swp,*.bak,*.py[o,c],*.class,.svn,*.o,*~,.git
-    " 让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-    set completeopt=longest,menu
+    set wildignore=*.o,*.obj,*~
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+    set wildignore+=*DS_Store*
+    set wildignore+=vendor/rails/**
+    set wildignore+=vendor/cache/**
+    set wildignore+=*.gem
+    set wildignore+=log/**
+    set wildignore+=tmp/**
+    set wildignore+=*.png,*.jpg,*.gif
+    set wildignore+=*.so,*.zip,*/.Trash/**,*.pdf,*.dmg,*/Library/**,*/.rbenv/**
+    set wildignore+=*/.nx/**,*.app,*.git,.git
+    set wildignore+=*.bak,*.py[o,c],*.class,.svn
 " }
 
 
