@@ -129,6 +129,7 @@ fi
 if which pacman > /dev/null 2>&1; then
     alias p="pacman"
     alias paci="pacman -Syu --noconfirm"
+    alias pacu="pacman -Rsc"
 fi
 
 
