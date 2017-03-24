@@ -1,2 +1,0 @@
-{+forward-override{forward-socks5 172.17.0.1:1080 .}}
-/
