@@ -83,6 +83,11 @@ fi
 eval "$(pyenv init - zsh)"
 eval "$(pyenv virtualenv-init - zsh)"
 
+# direnv
+if which direnv > /dev/null 2>&1; then
+    eval "$(direnv hook zsh)"
+fi
+
 # docker
 if [ $docker_exist ]; then
     alias d="docker"
