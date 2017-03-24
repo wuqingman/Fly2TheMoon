@@ -212,12 +212,12 @@ call plug#begin()
 "   目录树
     Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs' | Plug 'XuYuanp/nerdtree-git-plugin'
 
-    " 在右侧
+    " 在左侧打开面板
     let g:NERDTreeWinPos="left"
     " 打开文件后自动关闭
     let g:NERDTreeQuitOnOpen=1
     " 高亮行，但是在这个配色下好像无效
-    let g:NERDTreeHighlightCursorline=1
+    " let g:NERDTreeHighlightCursorline=1
     " 以下文件不启用nerdtree
     let g:NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
     " 键盘映射
@@ -446,6 +446,7 @@ call plug#begin()
     let g:NERDDefaultAlign = 'left'
     let g:NERDCommentEmptyLines = 1
     let g:NERDTrimTrailingWhitespace = 1
+    let g:NERDAltDelims_python = 1
 " }
 
 " tagbar {
