@@ -375,21 +375,24 @@ call plug#begin()
     let g:ycm_goto_buffer_command = 'new-or-existing-tab'
     " 服务器持续记录日志
     let g:ycm_server_keep_logfiles = 0
+    " 日志等级
+    let g:ycm_log_level = 'info'
     " 直接触发自动补全 insert模式下
-    let g:ycm_key_invoke_completion = '<C-Enter>'
+    " let g:ycm_key_invoke_completion = '<C-CR>'
     " 载入第三方包
-    let g:ycm_global_ycm_extra_conf = "~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+    " let g:ycm_global_ycm_extra_conf = "~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
     " 黑名单,不启用
     let g:ycm_filetype_blacklist = {
         \ 'tagbar': 1,
         \ 'gitcommit': 1,
         \ 'notes': 1,
-        \ 'text': 1,
+        \ 'text': 0,
         \ 'vimwiki': 1,
-        \ 'vim': 1,
+        \ 'vim': 0,
         \}
-    nnoremap <Leader>fa :YcmCompleter GoToDefinitionElseDeclaration<CR>
-    nnoremap <Leader>fs :YcmCompleter GoToDeclaration<CR>
+    nnoremap <Leader>fe :YcmCompleter GoTo<CR>
+    nnoremap <Leader>fa :YcmCompleter GetDoc<CR>
+    nnoremap <Leader>fs :YcmCompleter GoToReferences<CR>
 " }
 
 " ale {

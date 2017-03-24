@@ -22,6 +22,7 @@
 " |         3.5 文件
 " |         3.6 命令行
 " |         3.7 杂项
+" |     4. 自动命令
 " --------------------------------------------------------------------------------
 
 " --------------------------------------------------------------------------------
@@ -45,49 +46,6 @@ endfunction
     " 根据文件类型启用插件、缩进
     filetype plugin indent on
 
-    " 类型：git commit
-    " {
-        " 设置竖线长度为72个字符，并移动光标到头部
-        function! <SID>GitCommitEditMsg()
-            :set colorcolumn=72
-            exec "normal! gg"
-        endfunction
-        autocmd! BufReadPost COMMIT_EDITMSG :call <SID>GitCommitEditMsg()
-    " }
-
-    " 类型：vim配置文件
-    " {
-        " 自动载入配置
-        autocmd! BufWritePost $F2TM_project_path/vim/vim/scripts/*.vim,$F2TM_project_path/vim/vimrc execute 'source %'
-
-        " <Leader>9新标签打开配置文件
-        function! <SID>OpenVimSettings()
-            if <SID>TabIsEmpty()
-                execute "edit $HOME/.vim/scripts/plugin.vim | vsp $HOME/.vim/scripts/setting.vim | tabmove"
-            else
-                execute "tabe $HOME/.vim/scripts/plugin.vim | vsp $HOME/.vim/scripts/setting.vim | tabmove"
-            endif
-            if exists(":TabooRename")
-                execute "TabooRename settings"
-            endif
-        endfunction
-        nnoremap <Leader>9 :call <SID>OpenVimSettings()<CR>
-    " }
-
-    " 类型：help信息
-    " {
-        " <Leader>0新标签打开帮助信息
-        function! <SID>OpenVimHelp()
-            if <SID>TabIsEmpty()
-                execute "help | only | tabmove"
-            else
-                execute "tab help | tabmove"
-            endif
-            if exists(":TabooRename")
-                execute "TabooRename help info"
-            endif
-        endfunction
-        nnoremap <Leader>0 :call <SID>OpenVimHelp()<CR>
     " }
 " }
 
@@ -239,9 +197,6 @@ endfunction
 " {
     " 光标
     " {
-        " 打开文件时光标自动定位到上次的位置
-        autocmd! BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
         " 括号配对情况,跳转并高亮一下匹配的括号
         set showmatch
         " 2s后闪缩匹配的括号
@@ -254,11 +209,6 @@ endfunction
         set number
         " 显示相对行号
         set relativenumber
-
-        " 进入插入模式时使用绝对行号
-        autocmd! InsertEnter * :set norelativenumber number
-        " 退出插入模式进入普通模式时使用相对行号
-        autocmd! InsertLeave * :set relativenumber
 
         " F3 开启/关闭行号
         function! HideNumber()
@@ -302,8 +252,8 @@ endfunction
     set showcmd
     " 显示当前vim模式
     set showmode
-    " 底部状态栏显示1行
-    set laststatus=1
+    " 底部状态栏显示2行
+    set laststatus=2
     " 更精简的提示信息
     set shortmess=aIO
 
@@ -360,6 +310,32 @@ endfunction
     let g:last_active_tab = 1
     autocmd! TabLeave * let g:last_active_tab = tabpagenr()
     nnoremap <silent> <Leader>t :execute 'tabnext ' . g:last_active_tab<cr>
+
+    " <Leader>9: 打开配置文件
+    function! <SID>OpenVimSettings()
+        if <SID>TabIsEmpty()
+            execute "edit $HOME/.vim/scripts/plugin.vim | vsp $HOME/.vim/scripts/setting.vim | tabmove"
+        else
+            execute "tabe $HOME/.vim/scripts/plugin.vim | vsp $HOME/.vim/scripts/setting.vim | tabmove"
+        endif
+        if exists(":TabooRename")
+            execute "TabooRename settings"
+        endif
+    endfunction
+    nnoremap <Leader>9 :call <SID>OpenVimSettings()<CR>
+
+    " <Leader>0: 打开帮助信息
+    function! <SID>OpenVimHelp()
+        if <SID>TabIsEmpty()
+            execute "help | only | tabmove"
+        else
+            execute "tab help | tabmove"
+        endif
+        if exists(":TabooRename")
+            execute "TabooRename help info"
+        endif
+    endfunction
+    nnoremap <Leader>0 :call <SID>OpenVimHelp()<CR>
 " }
 
 " 3.3 窗口
@@ -398,8 +374,8 @@ endfunction
     inoremap <silent> <C-s> <Esc>:w<CR>
 
     " 快速关闭窗口
-    nnoremap <C-q> :q<CR>
-    inoremap <C-q> <Esc>:q<CR>
+    nnoremap qq :q<CR>
+    inoremap qq <Esc>:q<CR>
 
     " 快速关闭标签
     function! <SID>CloseTabOrCloseVim()
@@ -428,8 +404,6 @@ endfunction
     inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
     inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
     inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
-    " 离开插入模式后自动关闭预览窗口
-    autocmd! InsertLeave * if pumvisible() == 0|pclose|endif
 
     " 调整缩进后自动选中，方便再次操作
     vnoremap < <gv
@@ -437,7 +411,32 @@ endfunction
 
     " 手动进入粘贴模式
     noremap <Leader>fw :set paste<ESC>i
-    " 退出插入模式时关闭粘贴模式
-    autocmd! InsertLeave * :set nopaste
-
 " }
+
+
+
+" --------------------------------------------------------------------------------
+" | 4. 自动命令
+" --------------------------------------------------------------------------------
+
+" git commit 设置竖线长度为72个字符，并移动光标到头部
+function! <SID>GitCommitEditMsg()
+    :set colorcolumn=72
+    exec "normal! gg"
+endfunction
+autocmd! BufReadPost COMMIT_EDITMSG :call <SID>GitCommitEditMsg()
+
+" 自动载入配置
+autocmd! BufWritePost $F2TM_project_path/vim/vim/scripts/*.vim,$F2TM_project_path/vim/vimrc execute 'source %'
+
+" 打开文件时光标自动定位到上次的位置
+autocmd! BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" 进入插入模式时使用绝对行号
+autocmd! InsertEnter * :set norelativenumber number
+
+" 退出插入模式进入普通模式时
+" 使用相对行号，关闭粘贴模式，自动关闭预览窗口
+autocmd! InsertLeave *
+            \   :set relativenumber nopaste |
+            \   if pumvisible() == 0|pclose|endif
